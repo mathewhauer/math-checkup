@@ -81,7 +81,7 @@ body {
   max-width: 840px; margin: 0 auto; padding-block: 18px 72px;
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
 }
-body[data-view="test"] #app { max-width: 760px; }
+body[data-view="test"] #app, body[data-view="practice"] #app { max-width: 760px; }
 h1, h2, h3 { line-height: 1.2; margin: 0; }
 h1 { font-size: 2.05rem; letter-spacing: -0.01em; }
 p { margin: 0 0 12px; }
@@ -196,7 +196,7 @@ b { font-weight: 700; }
   border: 2px solid var(--line-strong); border-radius: 14px; cursor: pointer; -webkit-tap-highlight-color: transparent;
 }
 .opts.one-col .opt { font-size: 1.1rem; }
-.opt:hover { border-color: var(--ink); }
+.opt:not(:disabled):hover { border-color: var(--ink); }
 .opt.sel { border-color: var(--ink); background: var(--hl); box-shadow: inset 0 0 0 1.5px var(--ink); }
 .key { flex: none; display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; border: 2px solid var(--ink); font-size: 1rem; font-weight: 700; }
 .opt.sel .key { background: var(--pencil); color: var(--on-pencil); border-color: var(--on-pencil); }
@@ -288,10 +288,11 @@ p.lead-in { margin: 0; }
 .std { font-size: .88rem; color: var(--ink-2); margin: 0; }
 @media (max-width: 520px) { .pri { padding: 62px 16px 12px; } .pri::before { left: 16px; top: 14px; } }
 .more { list-style: none; margin: 0; padding: 0; border-top: 1.5px solid var(--line); }
-.more li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 12px; align-items: center; padding: 10px 2px; border-bottom: 1.5px solid var(--line); }
+.more li { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 2px 12px; align-items: center; padding: 10px 2px; border-bottom: 1.5px solid var(--line); }
 .more .nm { font-weight: 700; }
 .more .muted { grid-column: 1; font-size: .92rem; }
 .more .chip { grid-column: 2; grid-row: 1 / span 2; }
+.more .link { grid-column: 3; grid-row: 1 / span 2; }
 .pats { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
 .pats li { border-left: 5px solid var(--gap); background: var(--paper); border-radius: 0 10px 10px 0; padding: 10px 14px; break-inside: avoid; }
 .pats p { margin: 0; }
@@ -352,6 +353,96 @@ p.lead-in { margin: 0; }
 .modal.wide { max-width: 620px; }
 .modal textarea { display: block; width: 100%; min-height: 220px; margin: 0 0 16px; padding: 12px; font: .92rem/1.5 var(--font); color: var(--ink); background: var(--paper); border: 1.5px solid var(--line-strong); border-radius: 10px; resize: vertical; }
 .sync-note { margin: 14px 2px 0; font-size: .93rem; color: var(--ink-2); max-width: 70ch; }
+
+/* ---------- worked solutions ---------- */
+.steps { margin: 0; padding-left: 1.7em; display: grid; gap: 9px; }
+.steps li { padding-left: 4px; max-width: 66ch; }
+.steps li::marker { font-weight: 700; color: var(--ink-2); }
+.work-wrap { overflow-x: auto; margin: 2px 0 14px; }
+.colwork { border-collapse: collapse; font-size: 1.4rem; line-height: 1.3; font-variant-numeric: tabular-nums; }
+.colwork td { min-width: .9em; padding: 1px 3px; text-align: center; }
+.colwork td.cw-op { min-width: 1.3em; padding-right: 8px; color: var(--ink-2); }
+.colwork .cw-carry td { font-size: .62em; font-weight: 700; color: var(--mark); vertical-align: bottom; height: 1.2em; }
+.colwork .cw-rule td { border-bottom: 2.5px solid var(--ink); }
+.colwork .cw-res td { border-top: 2.5px solid var(--ink); font-weight: 700; }
+.colwork td.cw-sep { min-width: 0; padding: 0 1px; }
+.ldiv .ld-q td { font-weight: 700; }
+.ldiv td.ld-d { padding: 1px 6px 1px 2px; text-align: right; }
+.ldiv td.cw-op { min-width: .9em; padding-right: 3px; }
+.ldiv td.ld-brk { border-right: 2.5px solid var(--ink); }
+.ldiv td.ld-top { border-top: 2.5px solid var(--ink); }
+.ldiv td.ld-rule { border-bottom: 2.5px solid var(--ink); }
+.ldiv td.ld-minus { color: var(--ink-2); }
+.ldiv td.ld-r { padding-left: 10px; white-space: nowrap; }
+.pvchart { border-collapse: separate; border-spacing: 3px 0; font-variant-numeric: tabular-nums; }
+.pvchart th { font-size: .74rem; font-weight: 700; line-height: 1.15; color: var(--ink-2); padding: 2px 4px 5px; vertical-align: bottom; text-align: center; max-width: 6em; border-bottom: 1.5px solid var(--line-strong); }
+.pvchart td { font-size: 1.45rem; padding: 3px 6px; text-align: center; border-radius: 6px; }
+.pvchart td.hi { background: var(--hl); font-weight: 700; box-shadow: inset 0 0 0 2px var(--pencil-dk); }
+.rv-sol .steps { margin-top: 6px; }
+.rv-sol .colwork { font-size: 1.2rem; }
+
+/* ---------- practice ---------- */
+.prac-title { font-size: clamp(1.5rem, 4.6vw, 1.95rem); margin: 2px 0 10px; }
+.streak { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; font-size: .95rem; color: var(--ink-2); }
+.sdots { display: inline-flex; gap: 6px; }
+.sdot { width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--line-strong); background: var(--card); }
+.sdot.on { background: var(--pencil); border-color: var(--ink); }
+.opt:disabled { cursor: default; }
+.opt:disabled:not(.right):not(.wrong) { opacity: .55; }
+.opt.right { border-color: var(--solid); background: var(--solid-bg); box-shadow: inset 0 0 0 1.5px var(--solid); }
+.opt.right .key { background: var(--solid); color: var(--card); border-color: var(--solid); }
+.opt.wrong { border-color: var(--gap); background: var(--gap-bg); box-shadow: inset 0 0 0 1.5px var(--gap); }
+.opt.wrong .key { background: var(--gap); color: var(--on-gap); border-color: var(--gap); }
+.feedback { margin-top: 18px; padding: 14px 18px; border: 2px solid; border-radius: 14px; }
+.feedback:focus { outline: none; }
+.feedback p { margin: 0; }
+.feedback p + p { margin-top: 6px; }
+.feedback.ok { background: var(--solid-bg); border-color: var(--solid); }
+.feedback.no { background: var(--gap-bg); border-color: var(--gap); }
+.feedback.shown { background: var(--hl); border-color: var(--pencil-dk); }
+.fb-head { font-size: 1.15rem; font-weight: 700; }
+.feedback.ok .fb-head { color: var(--solid); }
+.feedback.no .fb-head { color: var(--gap); }
+.fb-master { font-weight: 700; }
+.worked { background: var(--card); border: 2px solid var(--ink); border-radius: 18px; box-shadow: 0 4px 0 var(--ink); padding: 20px clamp(18px, 4vw, 28px) 22px; margin-top: 16px; }
+.worked h2 { font-size: 1.2rem; margin-bottom: 12px; }
+.worked .steps { font-size: 1.05rem; }
+.test-actions.end { justify-content: flex-end; }
+.prac-cta { margin-top: 26px; padding-top: 20px; border-top: 2px dashed var(--line); }
+.prac-cta p { font-weight: 700; }
+.prac-hero { margin-top: 8px; }
+.plist-sheet { padding-top: 22px; padding-bottom: 12px; margin-bottom: 18px; }
+.plist-sheet h2 { font-size: 1.3rem; margin-bottom: 4px; }
+.plist-sheet > .muted { font-size: .93rem; margin-bottom: 6px; }
+.plist { list-style: none; margin: 4px 0 0; padding: 0; }
+.prow { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 6px 12px; align-items: center; padding: 11px 0; border-top: 1.5px solid var(--line); }
+.prow:first-child { border-top: 0; }
+.prow-info { display: flex; flex-direction: column; min-width: 0; }
+.prow .nm { font-weight: 700; }
+.prow .muted { font-size: .88rem; }
+.prow-tags { display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; }
+.psec { border-top: 1.5px solid var(--line); }
+.psec:first-of-type { border-top: 0; }
+.psec summary { cursor: pointer; display: flex; justify-content: space-between; gap: 12px; padding: 13px 0; font-weight: 700; }
+.psec summary { list-style: none; }
+.psec summary::-webkit-details-marker { display: none; }
+.psec summary .muted { font-weight: 400; font-size: .92rem; white-space: nowrap; margin-left: auto; }
+.psec summary::after { content: ""; flex: none; width: 8px; height: 8px; margin: 7px 4px 0 2px; border-right: 2.5px solid var(--ink-2); border-bottom: 2.5px solid var(--ink-2); transform: rotate(45deg); }
+.psec[open] summary::after { transform: rotate(-135deg); margin-top: 11px; }
+.psec .plist { margin: 0 0 8px; }
+.psec .prow:first-child { border-top: 1.5px solid var(--line); }
+.chip.mastered { background: var(--hl); color: var(--ink); }
+.chip.mastered i { background: var(--pencil); border-color: var(--pencil-dk); }
+.mastered-note { color: var(--solid); }
+.pri-foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 12px; margin-top: 10px; }
+@media (max-width: 560px) {
+  .pvchart { border-spacing: 1px 0; }
+  .pvchart th { font-size: .66rem; padding: 2px 2px 5px; }
+  .pvchart td { font-size: 1.25rem; padding: 3px 4px; }
+  .prow { grid-template-columns: minmax(0, 1fr) auto; }
+  .prow-tags { grid-column: 1; grid-row: 2; justify-content: flex-start; }
+  .prow .btn { grid-column: 2; grid-row: 1 / span 2; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .pencil-fill, .btn { transition: none; }
@@ -447,7 +538,83 @@ function makeItem(o) {
     if (out.length < 4) throw new Error('Could not build 4 options: ' + o.prompt);
     opts = R.shuffle(out);
   }
-  return { p: o.prompt, f: o.fig || '', o: opts.map(x => ({ h: x.h, k: x.k, m: x.m || null })), ans: opts.findIndex(x => x.c), sol: o.sol || '', big: !!o.big };
+  const ans = opts.findIndex(x => x.c);
+  // Worked solution: the generator's steps, then one closing line that names the answer exactly as shown.
+  const st = (o.steps || []).filter(Boolean).concat(`Answer: <b>${opts[ans].h}</b>`);
+  return { p: o.prompt, f: o.fig || '', o: opts.map(x => ({ h: x.h, k: x.k, m: x.m || null })), ans, sol: o.sol || '', big: !!o.big, st, w: o.work || '' };
+}
+
+// ---------- worked-solution helpers ----------
+const PLACES = ['ones', 'tens', 'hundreds', 'thousands', 'ten thousands', 'hundred thousands'];
+const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+const nth = (n, one, many) => n === 1 ? one : many;
+// Column arithmetic laid out the way it's written on paper: digits right-aligned, optional carries above.
+// Columns holding only commas or decimal points are drawn narrow, so 3,000 reads as one number.
+function sepCols(grid) {
+  const isSep = c => c === ',' || c === '.';
+  return grid[0].map((_, i) => grid.some(g => isSep(g[i])) && grid.every(g => g[i] === '' || isSep(g[i])));
+}
+function colWork(rows, result, carries) {
+  const W = Math.max(result.length, ...rows.map(r => r.s.length));
+  const cells = s => Array(W - s.length).fill('').concat(s.split(''));
+  const res = cells(result), grid = rows.map(r => cells(r.s)).concat([res]), sep = sepCols(grid);
+  const td = (c, i) => `<td${sep[i] ? ' class="cw-sep"' : ''}>${c}</td>`;
+  let top = '';
+  if (carries) {
+    const pl = []; let p = 0;
+    for (let i = W - 1; i >= 0; i--) pl[i] = /\d/.test(res[i]) ? p++ : null;
+    top = '<tr class="cw-carry"><td></td>' + res.map((_, i) => td(pl[i] != null && carries[pl[i]] ? carries[pl[i]] : '', i)).join('') + '</tr>';
+  }
+  const tr = (op, arr, cls) => `<tr${cls ? ` class="${cls}"` : ''}><td class="cw-op">${op || ''}</td>${arr.map(td).join('')}</tr>`;
+  return `<div class="work-wrap"><table class="colwork" aria-hidden="true">${top}${rows.map((r, k) => tr(r.op, grid[k], r.rule ? 'cw-rule' : '')).join('')}${tr('', res, 'cw-res')}</table></div>`;
+}
+// Numbers stacked with their digits lined up (for comparing decimals).
+function stackWork(strs) {
+  const W = Math.max(...strs.map(s => s.length)), grid = strs.map(s => Array(W - s.length).fill('').concat(s.split(''))), sep = sepCols(grid);
+  return `<div class="work-wrap"><table class="colwork" aria-hidden="true">${grid.map(g => `<tr><td class="cw-op"></td>${g.map((c, i) => `<td${sep[i] ? ' class="cw-sep"' : ''}>${c}</td>`).join('')}</tr>`).join('')}</table></div>`;
+}
+// Long division, one quotient digit at a time, with the written layout (divisor, bracket, subtractions).
+function longDiv(n, d) {
+  const ds = String(n).split('').map(Number), steps = [], L = ds.length, qrow = Array(L).fill(''), rows = [];
+  let cur = 0, q = '', started = false, from = 0;
+  for (let i = 0; i < ds.length; i++) {
+    cur = cur * 10 + ds[i];
+    if (!started && cur < d && i < ds.length - 1) continue;
+    let s = !started && i > 0 ? `${d} is bigger than ${String(n).slice(0, i)}, so start with ${cur}. ` : '';
+    started = true;
+    const qd = Math.floor(cur / d), prod = qd * d, rem = cur - prod;
+    s += qd === 0 ? `How many ${d}s are in ${cur}? None, so write 0 in the answer.`
+      : `How many ${d}s are in ${cur}? ${qd}, because ${qd} ${TIMES} ${d} = ${prod}${d >= 10 ? ` (${qd + 1} ${TIMES} ${d} = ${(qd + 1) * d} is too much)` : ''}. Write ${qd}. Subtract: ${cur} ${MINUS} ${prod} = ${rem}.`;
+    if (i < ds.length - 1) s += ` Bring down the ${ds[i + 1]} to make ${rem * 10 + ds[i + 1]}.`;
+    steps.push(s); q += qd; cur = rem;
+    qrow[i] = String(qd);
+    const ps = String(prod), pFrom = i - ps.length + 1, ruleFrom = Math.min(pFrom, from), prow = Array(L).fill('');
+    ps.split('').forEach((c, k) => { prow[pFrom + k] = c; });
+    rows.push({ cells: prow, minus: ruleFrom - 1, rule: [ruleFrom, i] });
+    const rs = String(rem), rFrom = i - rs.length + 1, rrow = Array(L).fill('');
+    rs.split('').forEach((c, k) => { rrow[rFrom + k] = c; });
+    if (i < L - 1) rrow[i + 1] = String(ds[i + 1]);
+    rows.push({ cells: rrow, minus: -2 });
+    from = rFrom;
+  }
+  const extra = cur ? '<td></td>' : '';
+  let h = `<tr class="ld-q"><td></td><td class="cw-op"></td>${qrow.map(c => `<td>${c}</td>`).join('')}${cur ? `<td class="ld-r">R ${cur}</td>` : ''}</tr>`
+    + `<tr><td class="ld-d">${d}</td><td class="cw-op ld-brk"></td>${ds.map(c => `<td class="ld-top">${c}</td>`).join('')}${extra}</tr>`;
+  for (const r of rows) {
+    h += `<tr><td></td><td class="cw-op">${r.minus === -1 ? MINUS : ''}</td>` + r.cells.map((c, k) => {
+      const cl = [r.rule && k >= r.rule[0] && k <= r.rule[1] ? 'ld-rule' : '', k === r.minus ? 'ld-minus' : ''].filter(Boolean).join(' ');
+      return `<td${cl ? ` class="${cl}"` : ''}>${k === r.minus ? MINUS : c}</td>`;
+    }).join('') + extra + '</tr>';
+  }
+  return { steps, q: Number(q), r: cur, work: `<div class="work-wrap"><table class="colwork ldiv" aria-hidden="true">${h}</table></div>` };
+}
+// A place-value chart with one digit highlighted.
+function placeChart(str, hi) {
+  const [w, f = ''] = str.replace(/,/g, '').split('.');
+  const names = w.split('').map((_, i) => PLACES[w.length - 1 - i]).concat(f ? ['', ...f.split('').map((_, i) => ['tenths', 'hundredths', 'thousandths'][i])] : [])
+    .map(x => x.replace(/(hundred|thousand)ths/, '$1&shy;ths'));
+  const digs = w.split('').concat(f ? ['.', ...f.split('')] : []);
+  return `<div class="work-wrap"><table class="pvchart" aria-hidden="true"><tr>${names.map(n => `<th>${n}</th>`).join('')}</tr><tr>${digs.map((d, i) => `<td${i === hi ? ' class="hi"' : ''}>${d}</td>`).join('')}</tr></table></div>`;
 }
 
 // ---------- figures (SVG) ----------
@@ -579,7 +746,7 @@ const MIS = {
   frac_bigger_denominator: 'Thinks a bigger bottom number means a bigger fraction.',
   frac_bigger_numerator: 'Compares fractions by looking only at the top numbers.',
   frac_across: 'Adds or subtracts the tops and the bottoms separately (\u00bd + \u2153 = \u2156).',
-  frac_mixed_flip: 'When subtracting mixed numbers, subtracts the smaller fraction from the bigger one instead of regrouping.',
+  frac_mixed_flip: 'Subtracts the smaller fraction from the bigger one instead of regrouping when subtracting mixed numbers.',
   frac_borrow_ten: 'Regroups a whole as 10 instead of as a fraction like 5/5.',
   frac_unconverted: 'Finds a common denominator but doesn\u2019t change the top numbers to match.',
   frac_mixed_carry: 'Drops the extra whole when the fraction parts add up to more than 1.',
@@ -695,7 +862,7 @@ const MIS = {
   mean_no_divide: 'Adds the numbers for the mean but forgets to divide.',
   center_spread_confuse: 'Mixes up the mean with the range.',
   median_unsorted: 'Finds the middle number without putting the list in order first.',
-  median_even: 'With an even count, picks one middle number instead of averaging the two.',
+  median_even: 'Picks one of the two middle numbers instead of averaging them when there is an even count.',
   median_midrange: 'Takes halfway between the smallest and largest values instead of the median.',
   range_max: 'Gives the largest value instead of the range.',
   range_first_last: 'Subtracts the first and last numbers in the list instead of the largest and smallest.',
@@ -711,13 +878,17 @@ G.mulfacts = () => {
   let a = R.int(3, 9), b = R.int(3, 9);
   if (a < 6 && b < 6 && R.chance(0.7)) a = R.int(6, 9);
   if (R.chance(0.5)) [a, b] = [b, a];
-  const c = a * b;
+  const c = a * b, big = Math.max(a, b), small = Math.min(a, b);
   const near = R.shuffle([a * (b + 1), a * (b - 1), (a + 1) * b, (a - 1) * b]).concat([c + 10, c - 10]);
+  const steps = big >= 6
+    ? [`Break the ${big} into 5 and ${big - 5}. Fives are easy.`, `5 ${TIMES} ${small} = ${5 * small}.`, `${big - 5} ${TIMES} ${small} = ${(big - 5) * small}.`, `Add the two parts: ${5 * small} + ${(big - 5) * small} = ${c}.`]
+    : [`${a} ${TIMES} ${b} means ${a} groups of ${b}.`, `Count by ${b}s, ${a} times: ${Array.from({ length: a }, (_, i) => b * (i + 1)).join(', ')}.`];
   return makeItem({
     big: true, prompt: `${a} ${TIMES} ${b} = ?`, correct: On(c),
     ds: near.filter(x => x > 0).map(x => On(x)),
     fill: nearFill(c, [-4, -3, -2, 2, 3, 4]),
     sol: `${a} ${TIMES} ${b} = ${c}`,
+    steps,
   });
 };
 
@@ -728,6 +899,7 @@ G.divfacts = () => {
     ds: R.shuffle([a - 1, a + 1, a + 2, a - 2]).filter(x => x > 0).map(x => On(x)),
     fill: nearFill(a, [3, 4, -3]),
     sol: `${c} ${DIVIDE} ${b} = ${a}, because ${a} ${TIMES} ${b} = ${c}`,
+    steps: [`Turn it into a times question: what number times ${b} makes ${c}?`, `Count by ${b}s until you reach ${c}: ${Array.from({ length: a }, (_, i) => b * (i + 1)).join(', ')}.`, `That took ${a} jumps, so ${a} ${TIMES} ${b} = ${c}.`],
   });
 };
 
@@ -745,17 +917,51 @@ function subZeroBug(a, b) {
   }
   return Number(out.join(''));
 }
+// Column addition, one place at a time, with the carries it creates.
+function addSteps(a, b) {
+  const la = String(a).length, lb = String(b).length, steps = [], carriesInto = {};
+  let carry = 0;
+  for (let p = 0; p < Math.max(la, lb); p++) {
+    const da = Math.floor(a / 10 ** p) % 10, db = Math.floor(b / 10 ** p) % 10;
+    const parts = [p < la ? da : null, p < lb ? db : null].filter(x => x !== null).map(String);
+    if (carry) parts.push('1 carried');
+    const s = (p < la ? da : 0) + (p < lb ? db : 0) + carry;
+    const last = p === Math.max(la, lb) - 1;
+    steps.push(`${cap(PLACES[p])}: ${parts.join(' + ')} = ${s}.` + (s >= 10 && !last ? ` Write ${s % 10} and carry 1 to the ${PLACES[p + 1]}.` : ` Write ${s}.`));
+    carry = s >= 10 ? 1 : 0;
+    if (carry) carriesInto[p + 1] = 1;
+  }
+  return { steps, carriesInto };
+}
+// Column subtraction with regrouping, including regrouping across zeros.
+function subSteps(a, b) {
+  const top = String(a).split('').reverse().map(Number), B = String(b).split('').reverse().map(Number), steps = [];
+  for (let i = 0; i < top.length; i++) {
+    const bd = B[i] || 0, name = cap(PLACES[i]);
+    if (top[i] >= bd) { steps.push(`${name}: ${top[i]} ${MINUS} ${bd} = ${top[i] - bd}.`); continue; }
+    let j = i + 1; while (top[j] === 0) j++;
+    const zerosBetween = j - i - 1;
+    const how = zerosBetween === 0
+      ? `take 1 from the ${PLACES[j]} (${top[j]} becomes ${top[j] - 1})`
+      : `the ${PLACES.slice(i + 1, j).join(' and ')} ${nth(zerosBetween, 'is', 'are')} 0, so go to the ${PLACES[j]}: ${top[j]} becomes ${top[j] - 1}, and each 0 in between becomes 9`;
+    steps.push(`${name}: ${top[i]} is less than ${bd}, so regroup: ${how}. The ${top[i]} in the ${PLACES[i]} becomes ${top[i] + 10}, and ${top[i] + 10} ${MINUS} ${bd} = ${top[i] + 10 - bd}.`);
+    top[j] -= 1; for (let k = i + 1; k < j; k++) top[k] = 9; top[i] += 10;
+  }
+  return steps;
+}
 
 G.addsub = () => {
   if (R.chance(0.5)) {
     let a, b, t = 0;
     do { a = R.int(1200, 7999); b = R.int(300, 4999); } while ((carries(a, b) < 2 || a + b > 9999) && ++t < 300);
-    const c = a + b;
+    const c = a + b, w = addSteps(a, b);
     return makeItem({
       prompt: `${num(a)} + ${num(b)} = ?`, correct: On(c),
       ds: [On(addNoCarry(a, b), 'add_no_carry'), On(c - 100), On(c + 10)],
       fill: nearFill(c, [-10, 100, 1000, -1000, 20]),
       sol: `${num(a)} + ${num(b)} = ${num(c)}. Carry a 1 whenever a column adds up to 10 or more.`,
+      work: colWork([{ s: num(a) }, { op: '+', s: num(b) }], num(c), w.carriesInto),
+      steps: ['Line up the numbers by place value and add from right to left.', ...w.steps],
     });
   }
   let a, b, t = 0; const zeros = R.chance(0.5);
@@ -769,6 +975,8 @@ G.addsub = () => {
     ds: [On(subSmallLarge(a, b), 'sub_small_large'), z !== null ? On(z, 'sub_zero_borrow') : null, On(subNoDec(a, b), 'sub_no_decrement')],
     fill: nearFill(c, [-10, 10, 100, -100, 1000]),
     sol: `${num(a)} ${MINUS} ${num(b)} = ${num(c)}. Regroup whenever the top digit is smaller than the bottom digit.`,
+    work: colWork([{ s: num(a) }, { op: MINUS, s: num(b) }], num(c)),
+    steps: ['Line up the numbers by place value and subtract from right to left.', ...subSteps(a, b), `Check by adding back: ${num(c)} + ${num(b)} = ${num(a)}.`],
   });
 };
 
@@ -783,6 +991,13 @@ G.multmult = () => {
     prompt: `${num(a)} ${TIMES} ${b} = ?`, correct: On(c), ds,
     fill: nearFill(c, [-100, 100, 1000, -20, 10]),
     sol: `${num(a)} ${TIMES} ${o} = ${num(a * o)}, and ${num(a)} ${TIMES} ${t * 10} = ${num(a * t * 10)}. Add them: ${num(c)}.`,
+    work: colWork([{ s: num(a) }, { op: TIMES, s: String(b), rule: true }, { s: num(a * o) }, { op: '+', s: num(a * t * 10) }], num(c)),
+    steps: [
+      `Split ${b} into ${t * 10} and ${o}.`,
+      `Multiply by the ones: ${num(a)} ${TIMES} ${o} = ${num(a * o)}.`,
+      `Multiply by the tens: ${num(a)} ${TIMES} ${t * 10} = ${num(a * t * 10)}. (Multiply by ${t}, then put a 0 on the end for the tens.)`,
+      `Add the two rows: ${num(a * o)} + ${num(a * t * 10)} = ${num(c)}.`,
+    ],
   });
 };
 
@@ -790,22 +1005,27 @@ G.div1 = () => {
   const d = R.int(3, 9);
   if (R.chance(0.5)) {
     let q; do { q = R.pick([R.int(1, 9) * 100 + R.int(1, 9), R.int(1, 9) * 100 + R.int(1, 9) * 10, R.int(1, 9) * 1000 + R.int(1, 9) * 10 + R.int(1, 9)]); } while (q * d > 9999);
-    const n = q * d;
+    const n = q * d, L = longDiv(n, d);
     return makeItem({
       prompt: `${num(n)} ${DIVIDE} ${d} = ?`, correct: On(q),
       ds: [On(Number(String(q).replace(/0/g, '')), 'div_missing_zero'), On(q + 10), On(q - 1)],
       fill: nearFill(q, [1, 100, -10, 2]),
       sol: `${num(n)} ${DIVIDE} ${d} = ${num(q)}. Check: ${num(q)} ${TIMES} ${d} = ${num(n)}.`,
+      work: L.work,
+      steps: [...L.steps, 'Every time you bring a digit down, the answer gets a digit, even if it is 0.', `Check: ${num(q)} ${TIMES} ${d} = ${num(n)}.`],
     });
   }
   let q, r, n; do { q = R.int(21, 999); r = R.int(1, d - 1); n = q * d + r; } while (n > 9999 || n < 100);
   const f = (Q, Rm) => O(`${num(Q)} R ${Rm}`, `q${Q}r${Rm}`);
   const big = f(q - 1, r + d); big.m = 'div_big_remainder';
+  const L = longDiv(n, d);
   return makeItem({
     prompt: `${num(n)} ${DIVIDE} ${d} = ?`, correct: f(q, r),
     ds: [big, O(`${num(q)}.${r}`, `dec${q}.${r}`, 'remainder_decimal'), f(q + 1, r)],
     fill: () => { const rr = R.int(1, d - 1); return rr !== r ? f(q, rr) : f(q - 1, r); },
     sol: `${d} ${TIMES} ${num(q)} = ${num(q * d)}, and ${num(n)} ${MINUS} ${num(q * d)} = ${r}, so the answer is ${num(q)} R ${r}.`,
+    work: L.work,
+    steps: [...L.steps, `Nothing is left to bring down. ${r} is left over and is less than ${d}, so it is the remainder.`, `Check: ${num(q)} ${TIMES} ${d} + ${r} = ${num(n)}.`],
   });
 };
 
@@ -815,12 +1035,19 @@ G.div2 = () => {
   const ds = [];
   if (String(q).includes('0')) ds.push(On(Number(String(q).replace(/0/g, '')), 'div_missing_zero'));
   ds.push(On(q + 1), On(q - 1), On(q + 10));
-  const prompt = R.chance(0.5) ? R.pick([
+  const word = R.chance(0.5);
+  const prompt = word ? R.pick([
     `A school has ${num(n)} chairs to set up in rows of ${d}. How many rows will there be?`,
     `A factory packs ${num(n)} pencils into boxes of ${d}. How many boxes does it fill?`,
     `${num(n)} fans ride buses to a game. Each bus carries exactly ${d} fans. How many buses are there?`,
   ]) : `${num(n)} ${DIVIDE} ${d} = ?`;
-  return makeItem({ prompt, correct: On(q), ds, fill: nearFill(q, [2, -2, -10, 20]), sol: `${num(n)} ${DIVIDE} ${d} = ${num(q)}. Check: ${num(q)} ${TIMES} ${d} = ${num(n)}.` });
+  const L = longDiv(n, d);
+  return makeItem({
+    prompt, correct: On(q), ds, fill: nearFill(q, [2, -2, -10, 20]), work: L.work,
+    sol: `${num(n)} ${DIVIDE} ${d} = ${num(q)}. Check: ${num(q)} ${TIMES} ${d} = ${num(n)}.`,
+    steps: [word ? `Splitting ${num(n)} into equal groups of ${d} is division: ${num(n)} ${DIVIDE} ${d}.` : null,
+      `Tip: write out a few multiples of ${d} first: ${[1, 2, 3, 4, 5].map(k => k * d).join(', ')}…`, ...L.steps, `Check: ${num(q)} ${TIMES} ${d} = ${num(n)}.`],
+  });
 };
 
 G.oop = () => {
@@ -828,32 +1055,33 @@ G.oop = () => {
   if (t === 1) {
     const b = R.int(2, 6), cc = R.int(2, 6), a = R.int(b * cc + 1, b * cc + 20), d = R.int(2, 9);
     prompt = `${a} ${MINUS} ${b} ${TIMES} ${cc} + ${d}`; c = a - b * cc + d;
-    steps = `Multiply first: ${b} ${TIMES} ${cc} = ${b * cc}. Then go left to right: ${a} ${MINUS} ${b * cc} = ${a - b * cc}, and ${a - b * cc} + ${d} = ${c}.`;
+    steps = [`No parentheses or exponents, so multiply first: ${b} ${TIMES} ${cc} = ${b * cc}.`, `Now it is ${a} ${MINUS} ${b * cc} + ${d}. Go left to right: ${a} ${MINUS} ${b * cc} = ${a - b * cc}.`, `Then ${a - b * cc} + ${d} = ${c}.`];
     ds.push(On((a - b) * cc + d, 'oop_left_to_right'));
     if (a - (b * cc + d) >= 0) ds.push(On(a - (b * cc + d), 'oop_add_before_sub'));
   } else if (t === 2) {
     const a = R.int(2, 12), b = R.int(2, 6), d = R.int(1, 6), cc = R.int(d + 2, d + 7);
     prompt = `${a} + ${b} ${TIMES} (${cc} ${MINUS} ${d})`; c = a + b * (cc - d);
-    steps = `Parentheses first: ${cc} ${MINUS} ${d} = ${cc - d}. Then multiply: ${b} ${TIMES} ${cc - d} = ${b * (cc - d)}. Then add: ${a} + ${b * (cc - d)} = ${c}.`;
+    steps = [`Parentheses first: ${cc} ${MINUS} ${d} = ${cc - d}.`, `Now it is ${a} + ${b} ${TIMES} ${cc - d}. Multiply before adding: ${b} ${TIMES} ${cc - d} = ${b * (cc - d)}.`, `Then add: ${a} + ${b * (cc - d)} = ${c}.`];
     ds.push(On((a + b) * (cc - d), 'oop_left_to_right'));
     if (a + b * cc - d > 0) ds.push(On(a + b * cc - d, 'oop_ignore_parens'));
   } else if (t === 3) {
     const cc = R.int(2, 5), d = R.int(2, 6), m = R.chance(0.6) ? d * R.int(1, 3) : R.int(2, 9), S = cc * m, a = R.int(1, S - 1), b = S - a;
     prompt = `(${a} + ${b}) ${DIVIDE} ${cc} ${TIMES} ${d}`; c = m * d;
-    steps = `Parentheses first: ${a} + ${b} = ${S}. Then go left to right: ${S} ${DIVIDE} ${cc} = ${m}, and ${m} ${TIMES} ${d} = ${c}.`;
+    steps = [`Parentheses first: ${a} + ${b} = ${S}.`, `Now it is ${S} ${DIVIDE} ${cc} ${TIMES} ${d}. Multiply and divide are done left to right, so divide first: ${S} ${DIVIDE} ${cc} = ${m}.`, `Then ${m} ${TIMES} ${d} = ${c}.`];
     if (m % d === 0) ds.push(On(m / d, 'oop_mult_before_div'));
     if (b % cc === 0) ds.push(On(a + b / cc * d, 'oop_ignore_parens'));
   } else {
     const a = R.int(3, 9), b = R.int(3, 9), d = R.int(2, 5), cc = d * R.int(2, 6);
     prompt = `${a} ${TIMES} ${b} ${MINUS} ${cc} ${DIVIDE} ${d}`; c = a * b - cc / d;
-    steps = `Multiply and divide first: ${a} ${TIMES} ${b} = ${a * b} and ${cc} ${DIVIDE} ${d} = ${cc / d}. Then subtract: ${a * b} ${MINUS} ${cc / d} = ${c}.`;
+    steps = [`Multiply and divide before subtracting.`, `${a} ${TIMES} ${b} = ${a * b}.`, `${cc} ${DIVIDE} ${d} = ${cc / d}.`, `Now subtract: ${a * b} ${MINUS} ${cc / d} = ${c}.`];
     if (a * b > cc && (a * b - cc) % d === 0) ds.push(On((a * b - cc) / d, 'oop_left_to_right'));
     if (b > cc && (a * (b - cc)) % d === 0) ds.push(On(a * (b - cc) / d, 'oop_add_first'));
   }
   ds.push(On(c + 2));
   return makeItem({
     prompt: prompt + ' = ?', correct: On(c), ds, fill: nearFill(c, [-1, 1, -2, 3, 10, -10], null, 0),
-    sol: steps,
+    sol: steps.join(' '),
+    steps: ['Order: parentheses, then exponents, then × and ÷ left to right, then + and − left to right.', ...steps],
   });
 };
 
@@ -865,6 +1093,7 @@ G.wordprob = () => {
       prompt: `A school buys ${b} boxes of markers. Each box has ${e} markers. The teachers hand out ${g} markers. How many markers are left?`,
       correct: On(c), ds: [On(tot, 'multistep_one_step'), On(tot + g, 'wrong_operation'), On(c + 10)], fill: nearFill(c, [-10, 2, -2, 20]),
       sol: `${b} ${TIMES} ${e} = ${tot} markers, then ${tot} ${MINUS} ${g} = ${c}.`,
+      steps: ['Plan: first find how many markers there are in all, then take away the ones handed out.', `Markers in all: ${b} boxes ${TIMES} ${e} = ${tot}.`, `Markers left: ${tot} ${MINUS} ${g} = ${c}.`],
     });
   }
   if (t === 2) {
@@ -875,6 +1104,7 @@ G.wordprob = () => {
       correct: O('$' + c, c), ds: [O('$' + k * p, k * p, 'multistep_one_step'), O('$' + (m - p), m - p, 'missed_quantity'), O('$' + (m + k * p), m + k * p, 'wrong_operation')],
       fill: () => { const x = c + R.pick([-2, 2, 5, -5]); return x > 0 ? O('$' + x, x) : null; },
       sol: `${k} ${TIMES} $${p} = $${k * p}, then $${m} ${MINUS} $${k * p} = $${c}.`,
+      steps: ['Plan: find what the books cost in all, then subtract that from the money.', `Cost of the books: ${k} ${TIMES} $${p} = $${k * p}.`, `Money left: $${m} ${MINUS} $${k * p} = $${c}.`],
     });
   }
   if (t === 3) {
@@ -884,6 +1114,7 @@ G.wordprob = () => {
       prompt: `${n} students are going on a field trip. Each van holds ${cap} students. How many vans are needed so every student gets a seat?`,
       correct: On(c), ds: [On(fl, 'remainder_interpret'), O(`${fl} R ${n % cap}`, 'q' + fl + 'r', 'remainder_interpret'), On(c + 1)], fill: nearFill(c, [2, -2]),
       sol: `${n} ${DIVIDE} ${cap} = ${fl} R ${n % cap}. The ${n % cap} leftover students still need a van, so ${c} vans.`,
+      steps: [`Divide the students into vans of ${cap}: ${n} ${DIVIDE} ${cap} = ${fl} R ${n % cap}.`, `${fl} vans are full, and ${n % cap} ${nth(n % cap, 'student is', 'students are')} still waiting.`, `Those students need one more van: ${fl} + 1 = ${c}.`],
     });
   }
   if (t === 4) {
@@ -893,6 +1124,7 @@ G.wordprob = () => {
       prompt: `A baker makes ${tr} trays of muffins with ${m} muffins on each tray. She packs all of them into boxes of ${k}. How many boxes does she fill?`,
       correct: On(c), ds: [On(tr * m, 'multistep_one_step'), On(c + 1), On(c - 1)], fill: nearFill(c, [2, -2, 3]),
       sol: `${tr} ${TIMES} ${m} = ${tr * m} muffins, then ${tr * m} ${DIVIDE} ${k} = ${c} boxes.`,
+      steps: ['Plan: find how many muffins there are, then split them into boxes.', `Muffins: ${tr} trays ${TIMES} ${m} = ${tr * m}.`, `Boxes: ${tr * m} ${DIVIDE} ${k} = ${c}.`],
     });
   }
   const a = R.int(20, 60), b = R.int(20, 60), tot = a + b + R.int(5, 40), c = tot - (a + b);
@@ -901,11 +1133,24 @@ G.wordprob = () => {
     prompt: `${nm} read ${a} pages on Monday and ${b} pages on Tuesday. ${nm2} read ${tot} pages in all. How many more pages did ${nm2} read than ${nm}?`,
     correct: On(c), ds: [On(a + b, 'multistep_one_step'), On(tot - a, 'missed_quantity'), On(tot + a + b, 'wrong_operation')], fill: nearFill(c, [2, -2, 10]),
     sol: `${nm} read ${a} + ${b} = ${a + b} pages. ${tot} ${MINUS} ${a + b} = ${c}.`,
+    steps: [`Plan: find ${nm}’s total first, then compare. “How many more” means subtract.`, `${nm}: ${a} + ${b} = ${a + b} pages.`, `Difference: ${tot} ${MINUS} ${a + b} = ${c}.`],
   });
 };
 
 // ===== Section B: Fractions =====
 const OF = (n, d, m) => O(fr(n, d), fKey(F(n, d)), m); // raw-looking fraction, keyed by value
+const multiplesTo = (b, L) => Array.from({ length: L / b }, (_, i) => b * (i + 1)).join(', ');
+// Turning an improper fraction into a mixed number, as a step.
+const toMixedStep = (n, d) => n > d && n % d !== 0 ? `${fr(n, d)} is more than 1 whole: ${n} ${DIVIDE} ${d} = ${Math.floor(n / d)} R ${n % d}, so ${fr(n, d)} = ${mxRaw(Math.floor(n / d), n % d, d)}.` : null;
+// Finding a common denominator and rewriting both fractions, as steps.
+function commonDenSteps(a, b, c, d) {
+  const L = lcm(b, d), rw = (x, y) => y === L ? `${fr(x, y)} already has ${L} on the bottom.` : `${fr(x, y)} = ${fr(x * L / y, L)} (multiply the top and bottom by ${L / y}).`;
+  return [
+    `The bottoms are different (${b} and ${d}), so find a common denominator: the smallest number both go into.`,
+    `Count by ${b}s: ${multiplesTo(b, L)}. Count by ${d}s: ${multiplesTo(d, L)}. Both reach ${L}.`,
+    `Rewrite each fraction with ${L} on the bottom: ${rw(a, b)}`, rw(c, d),
+  ];
+}
 
 G.fracline = () => {
   const d = R.pick([3, 4, 5, 6, 8]), two = R.chance(0.4);
@@ -918,6 +1163,11 @@ G.fracline = () => {
     correct: OF(k, d), ds,
     fill: () => OF(R.int(1, two ? 2 * d - 1 : d - 1), d),
     sol: `Each whole is split into ${d} equal spaces, and P is ${k} space${k > 1 ? 's' : ''} from 0, so P is at ${fr(k, d)}.`,
+    steps: [
+      `Look at the space from 0 to 1. Count the equal spaces (not the tick marks): there are ${d}. So each space is ${fr(1, d)}.`,
+      `Count the spaces from 0 to P${two ? ', and keep counting past 1' : ''}: ${k}.`,
+      `${k} ${nth(k, 'space', 'spaces')} of ${fr(1, d)} make ${fr(k, d)}.`,
+    ],
   });
 };
 
@@ -930,6 +1180,12 @@ G.equivfrac = () => {
       ds: [OF(n + D - d, D, 'frac_equiv_add'), OF(n, D, 'frac_equiv_one_part'), OF(N + 1, D)],
       fill: () => { const dd = R.pick([D, D, D + 1, D - 1, d * (k + 1)]); return OF(R.int(1, dd - 1), dd); },
       sol: `Multiply the top and bottom by ${k}: ${fr(n, d)} = ${fr(N, D)}.`,
+      steps: [
+        'An equal fraction comes from multiplying the top and the bottom by the same number. Adding the same number does not work.',
+        `Try a bottom of ${D}: ${d} ${TIMES} ${k} = ${D}, so the number is ${k}.`,
+        `Multiply the top by ${k} too: ${n} ${TIMES} ${k} = ${N}.`,
+        `So ${fr(n, d)} = ${fr(N, D)}.`,
+      ],
     });
   }
   let n, d; do { d = R.int(3, 8); n = R.int(1, d - 1); } while (gcd(n, d) !== 1);
@@ -941,6 +1197,12 @@ G.equivfrac = () => {
     ds: [raw(N / p, D / p, 'frac_not_simplest'), sub > n ? raw(n, sub, 'frac_equiv_add') : null, raw(n, d + 1)],
     fill: () => { const j = R.int(1, d + 2), m = R.int(j + 1, d + 4); return gcd(j, m) === 1 && j * d !== n * m ? raw(j, m) : null; },
     sol: `Divide the top and bottom by ${k}, the greatest common factor: ${fr(N, D)} = ${fr(n, d)}.`,
+    steps: [
+      `Find the biggest number that divides both ${N} and ${D}. It is ${k}.`,
+      `Divide the top and the bottom by ${k}: ${N} ${DIVIDE} ${k} = ${n} and ${D} ${DIVIDE} ${k} = ${d}.`,
+      `Check: no number bigger than 1 divides both ${n} and ${d}, so ${fr(n, d)} is in simplest form.`,
+      `(Dividing by a smaller number, like ${p}, gives ${fr(N / p, D / p)}, which can still be simplified.)`,
+    ],
   });
 };
 
@@ -952,6 +1214,11 @@ G.comparefrac = () => {
       prompt: 'Which fraction is the <b>greatest</b>?',
       fixed: dens.map(dd => ({ h: fr(a, dd), k: dd, m: dd === mxd ? 'frac_bigger_denominator' : null, c: dd === mn })),
       sol: `All have ${a} on top, so the one with the smallest bottom number (the biggest pieces) is greatest: ${fr(a, mn)}.`,
+      steps: [
+        `All four fractions have ${a} on top, so each one is ${a} ${nth(a, 'piece', 'pieces')}.`,
+        `The bottom number says how many pieces the whole is cut into. More pieces means smaller pieces: ${fr(1, mn)} is bigger than ${fr(1, mxd)}.`,
+        `The smallest bottom number, ${mn}, gives the biggest pieces, so ${fr(a, mn)} is the greatest.`,
+      ],
     });
   }
   for (let t = 0; t < 2000; t++) {
@@ -964,10 +1231,17 @@ G.comparefrac = () => {
     const Dd = R.int(3, 9), Dn = R.int(1, Dd - 1), Dv = Dn / Dd;
     if (!(Dv < C - 0.04 && Dv > C - 0.35) || Dn >= Bn) continue;
     if (new Set([C, An / Ad, Bn / Bd, Dv].map(v => v.toFixed(6))).size < 4) continue;
+    const half = (x, y) => x * 2 > y ? 'more than half' : x * 2 < y ? 'less than half' : 'exactly half';
     return makeItem({
       prompt: 'Which fraction is the <b>greatest</b>?',
       fixed: [{ h: fr(n, d), c: true }, { h: fr(An, Ad), m: 'frac_bigger_denominator' }, { h: fr(Bn, Bd), m: 'frac_bigger_numerator' }, { h: fr(Dn, Dd) }],
-      sol: `${fr(n, d)} is about ${C.toFixed(2)}. The others are smaller: ${fr(An, Ad)} \u2248 ${(An / Ad).toFixed(2)}, ${fr(Bn, Bd)} \u2248 ${(Bn / Bd).toFixed(2)}, ${fr(Dn, Dd)} \u2248 ${Dv.toFixed(2)}.`,
+      sol: `${fr(n, d)} is about ${C.toFixed(2)}. The others are smaller: ${fr(An, Ad)} ≈ ${(An / Ad).toFixed(2)}, ${fr(Bn, Bd)} ≈ ${(Bn / Bd).toFixed(2)}, ${fr(Dn, Dd)} ≈ ${Dv.toFixed(2)}.`,
+      steps: [
+        'Bigger numbers on top or bottom don’t make a fraction bigger. Compare how much of a whole each one is.',
+        `Quick check against one half: ${[[n, d], [An, Ad], [Bn, Bd], [Dn, Dd]].map(([x, y]) => `${fr(x, y)} is ${half(x, y)}`).join('; ')}.`,
+        `To be exact, divide top by bottom: ${fr(n, d)} ≈ ${C.toFixed(2)}, ${fr(An, Ad)} ≈ ${(An / Ad).toFixed(2)}, ${fr(Bn, Bd)} ≈ ${(Bn / Bd).toFixed(2)}, ${fr(Dn, Dd)} ≈ ${Dv.toFixed(2)}.`,
+        `The biggest is ${fr(n, d)}.`,
+      ],
     });
   }
   return G.comparefrac();
@@ -982,16 +1256,28 @@ G.fraclike = () => {
       ds: [OF(s, 2 * d, 'frac_across'), a !== b ? OF(Math.abs(a - b), d, 'wrong_operation') : null, s + 1 < d ? OF(s + 1, d) : null],
       fill: () => OF(R.int(1, d - 1), d),
       sol: `The pieces are the same size (${d}ths), so add only the tops: ${a} + ${b} = ${s}. The answer is ${fr(s, d)}.`,
+      steps: [
+        `Both fractions have ${d} on the bottom, so the pieces are the same size.`,
+        `Add the tops (how many pieces): ${a} + ${b} = ${s}.`,
+        `Keep the bottom (the size of each piece) the same: ${fr(s, d)}. Adding the bottoms would change the piece size, which is wrong.`,
+      ],
     });
   }
   let W1, W2, n1, n2, d;
   do { d = R.int(3, 8); W1 = R.int(3, 9); W2 = R.int(1, W1 - 1); n1 = R.int(1, d - 2); n2 = R.int(n1 + 1, d - 1); } while (gcd(d + n1 - n2, d) !== 1);
-  const tot = F(W1 * d + n1 - (W2 * d + n2), d);
+  const tot = F(W1 * d + n1 - (W2 * d + n2), d), wl = W1 - 1 - W2, fp = d + n1 - n2;
   return makeItem({
     prompt: `${mxRaw(W1, n1, d)} ${MINUS} ${mxRaw(W2, n2, d)} = ?`, correct: Of(tot),
     ds: [Of(F((W1 - W2) * d + n2 - n1, d), 'frac_mixed_flip'), Of(F((W1 - 1 - W2) * d + n1 + 10 - n2, d), 'frac_borrow_ten'), Of(fAdd(tot, F(1, 1)))],
     fill: () => Of(fAdd(tot, F(R.pick([-1, 1, 2]), d))),
     sol: `${fr(n1, d)} is less than ${fr(n2, d)}, so regroup: ${mxRaw(W1, n1, d)} = ${mxRaw(W1 - 1, d + n1, d)}. Then ${mxRaw(W1 - 1, d + n1, d)} ${MINUS} ${mxRaw(W2, n2, d)} = ${fH(tot)}.`,
+    steps: [
+      `Look at the fraction parts: ${fr(n1, d)} is less than ${fr(n2, d)}, so you can’t take ${fr(n2, d)} away yet.`,
+      `Regroup: take 1 whole from the ${W1} and turn it into ${fr(d, d)}. That leaves ${W1 - 1} wholes and ${fr(d, d)} + ${fr(n1, d)} = ${fr(d + n1, d)}, so ${mxRaw(W1, n1, d)} = ${mxRaw(W1 - 1, d + n1, d)}.`,
+      `Subtract the fractions: ${fr(d + n1, d)} ${MINUS} ${fr(n2, d)} = ${fr(fp, d)}.`,
+      `Subtract the whole numbers: ${W1 - 1} ${MINUS} ${W2} = ${wl}.`,
+      `Put them together: ${mxRaw(wl, fp, d)}.`,
+    ],
   });
 };
 
@@ -1008,12 +1294,14 @@ G.fracunlike = () => {
   if (t >= 500) return G.fracunlike();
   const A = F(a, b), C = F(c, d), near = x => { const y = fAdd(x, F(R.pick([1, -1, 2]), L)); return y.n > 0 ? Of(y) : null; };
   const conv = (s) => `Use ${L} as the common denominator: ${fr(a * L / b, L)} ${s} ${fr(c * L / d, L)}`;
+  const cd = commonDenSteps(a, b, c, d), A2 = a * L / b, C2 = c * L / d;
   if (mode === 'add') {
     const ans = fAdd(A, C);
     return makeItem({
       prompt: `${fr(a, b)} + ${fr(c, d)} = ?`, correct: Of(ans),
       ds: [OF(a + c, b + d, 'frac_across'), OF(a + c, L, 'frac_unconverted'), near(ans)], fill: () => near(ans),
       sol: `${conv('+')} = ${fr(a * L / b + c * L / d, L)}${ans.d !== L || ans.n > ans.d ? ' = ' + fH(ans) : ''}.`,
+      steps: [...cd, `Now the pieces are the same size. Add the tops: ${A2} + ${C2} = ${S}. Keep the bottom: ${fr(S, L)}.`, toMixedStep(S, L)],
     });
   }
   if (mode === 'sub') {
@@ -1023,14 +1311,22 @@ G.fracunlike = () => {
       ds: [a > c && b - d >= 2 && a - c < b - d ? OF(a - c, b - d, 'frac_across') : null, a > c ? OF(a - c, L, 'frac_unconverted') : null, near(ans), Of(fAdd(A, C))],
       fill: () => Of(F(R.int(1, L - 1), L)),
       sol: `${conv(MINUS)} = ${fr(a * L / b - c * L / d, L)}${ans.d !== L ? ' = ' + fH(ans) : ''}.`,
+      steps: [...cd, `Now the pieces are the same size. Subtract the tops: ${A2} ${MINUS} ${C2} = ${S}. Keep the bottom: ${fr(S, L)}.`],
     });
   }
-  const W1 = R.int(1, 4), W2 = R.int(1, 3), ans = fAdd(F(W1 + W2, 1), fAdd(A, C)), fs = fAdd(A, C);
+  const W1 = R.int(1, 4), W2 = R.int(1, 3), ans = fAdd(F(W1 + W2, 1), fAdd(A, C)), fs = fAdd(A, C), SL = A2 + C2;
   return makeItem({
     prompt: `${mxRaw(W1, a, b)} + ${mxRaw(W2, c, d)} = ?`, correct: Of(ans),
     ds: [O(mxRaw(W1 + W2, a + c, b + d), fKey(F((W1 + W2) * (b + d) + a + c, b + d)), 'frac_across'), fv(fs) > 1 ? Of(fSub(ans, F(1, 1)), 'frac_mixed_carry') : null, Of(fAdd(ans, F(1, 1)))],
     fill: () => near(ans),
     sol: `Add the wholes: ${W1} + ${W2} = ${W1 + W2}. Add the fractions: ${conv('+')} = ${fH(fs)}. Total: ${fH(ans)}.`,
+    steps: [
+      `Add the whole numbers: ${W1} + ${W2} = ${W1 + W2}.`,
+      ...cd,
+      `Add the fractions: ${fr(A2, L)} + ${fr(C2, L)} = ${fr(SL, L)}${fs.n !== SL || fs.d !== L ? ` = ${fH(fs, false)}` : ''}.`,
+      fv(fs) > 1 ? `${fH(fs, false)} is more than 1 whole: it is ${fH(fs)}. Add that extra 1 to the ${W1 + W2}.` : null,
+      `Put them together: ${fH(ans)}.`,
+    ],
   });
 };
 
@@ -1043,6 +1339,12 @@ G.fracmult = () => {
       ds: [OF(w * n, w * d, 'frac_mult_both'), O(mxRaw(w, n, d), fKey(F(w * d + n, d)), 'frac_whole_mixed'), OF(n, w * d, 'frac_mult_denominator')],
       fill: () => Of(fAdd(ans, F(R.pick([1, -1]), d))),
       sol: `Multiply the top by ${w}: ${w} ${TIMES} ${fr(n, d)} = ${fr(w * n, d)}${w * n > d ? ' = ' + fH(ans) : ''}.`,
+      steps: [
+        `Write ${w} as a fraction: ${fr(w, 1)}.`,
+        `Multiply the tops: ${w} ${TIMES} ${n} = ${w * n}. Multiply the bottoms: 1 ${TIMES} ${d} = ${d}.`,
+        `That gives ${fr(w * n, d)}. (It is ${w} groups of ${fr(n, d)}, so only the number of pieces changes, not their size.)`,
+        toMixedStep(w * n, d),
+      ],
     });
   }
   let a, b, c, d; do { b = R.int(2, 9); d = R.int(2, 9); a = R.int(1, b - 1); c = R.int(1, d - 1); } while (gcd(a, b) !== 1 || gcd(c, d) !== 1 || gcd(a * c, b * d) !== 1);
@@ -1052,6 +1354,12 @@ G.fracmult = () => {
     ds: [Of(F(a * d, b * c), 'frac_cross_multiply'), L > 1 ? Of(F((a * L / b) * (c * L / d), L), 'frac_mult_common_denom') : null, Of(F(a * c + 1, b * d))],
     fill: () => Of(F(a * c + R.int(2, 4), b * d)),
     sol: `Multiply straight across: ${a} ${TIMES} ${c} = ${a * c} on top, ${b} ${TIMES} ${d} = ${b * d} on the bottom. The answer is ${fr(a * c, b * d)}.`,
+    steps: [
+      'To multiply fractions, multiply straight across. No common denominator is needed.',
+      `Tops: ${a} ${TIMES} ${c} = ${a * c}.`,
+      `Bottoms: ${b} ${TIMES} ${d} = ${b * d}.`,
+      `${fr(a * c, b * d)} can’t be simplified, so that is the answer.`,
+    ],
   });
 };
 
@@ -1064,6 +1372,11 @@ G.fracdiv = () => {
       ds: [Of(F(w, u), 'frac_div_as_mult'), Of(F(u * w, 1), 'div_order_reversed'), Of(F(u, w), 'frac_div_flip_first')],
       fill: () => Of(F(1, u + w + R.int(0, 3))),
       sol: `Splitting ${fr(1, u)} into ${w} equal parts gives ${fr(1, u * w)} (same as ${fr(1, u)} ${TIMES} ${fr(1, w)}).`,
+      steps: [
+        `Dividing by ${w} means splitting into ${w} equal parts, which is the same as multiplying by ${fr(1, w)}.`,
+        `${fr(1, u)} ${TIMES} ${fr(1, w)}: tops 1 ${TIMES} 1 = 1, bottoms ${u} ${TIMES} ${w} = ${u * w}.`,
+        `Picture it: cut ${fr(1, u)} of a pizza into ${w} equal slices. Each slice is ${fr(1, u * w)} of the whole pizza.`,
+      ],
     });
   }
   if (t === 'wu') {
@@ -1073,15 +1386,29 @@ G.fracdiv = () => {
       ds: [Of(F(w, u), 'frac_div_as_mult'), Of(F(1, w * u), 'div_order_reversed'), Of(F(w + u, 1))],
       fill: () => Of(F(w * u + R.pick([-2, 2, u]), 1)),
       sol: `How many ${fr(1, u)}s fit in ${w}? Each whole holds ${u}, so ${w} ${TIMES} ${u} = ${w * u}.`,
+      steps: [
+        `Ask: how many pieces of size ${fr(1, u)} fit into ${w}?`,
+        `One whole holds ${u} of them.`,
+        `${w} wholes hold ${w} ${TIMES} ${u} = ${w * u}. (Dividing by a fraction less than 1 gives a bigger number.)`,
+      ],
     });
   }
   if (t === 'ff') {
     let a, b, c, d, ans; do { b = R.int(2, 8); d = R.int(2, 8); a = R.int(1, b - 1); c = R.int(1, d - 1); ans = F(a * d, b * c); } while (gcd(a, b) !== 1 || gcd(c, d) !== 1 || ans.n === ans.d || b === d);
+    const g = gcd(a * d, b * c);
     return makeItem({
       prompt: `${fr(a, b)} ${DIVIDE} ${fr(c, d)} = ?`, correct: Of(ans),
       ds: [Of(F(a * c, b * d), 'frac_div_no_flip'), Of(F(b * c, a * d), 'frac_div_flip_first'), Of(fAdd(ans, F(1, ans.d)))],
       fill: () => Of(fAdd(ans, F(R.pick([1, 2, -1]), ans.d * 2))),
       sol: `Keep ${fr(a, b)}, change ${DIVIDE} to ${TIMES}, flip ${fr(c, d)} to ${fr(d, c)}: ${fr(a, b)} ${TIMES} ${fr(d, c)} = ${fr(a * d, b * c)}${ans.d !== b * c ? ' = ' + fH(ans) : ''}.`,
+      steps: [
+        `Keep the first fraction: ${fr(a, b)}.`,
+        `Change ${DIVIDE} to ${TIMES}.`,
+        `Flip the second fraction: ${fr(c, d)} becomes ${fr(d, c)}. (Only the second one flips.)`,
+        `Multiply straight across: ${fr(a, b)} ${TIMES} ${fr(d, c)} = ${fr(a * d, b * c)}.`,
+        g > 1 ? `Simplify: divide the top and bottom by ${g} to get ${fr(a * d / g, b * c / g)}.` : null,
+        toMixedStep(ans.n, ans.d),
+      ],
     });
   }
   let T, n, d; do { d = R.int(2, 6); n = R.int(1, d - 1); T = R.int(2, 9); } while (gcd(n, d) !== 1 || (T * d) % n !== 0 || n === d);
@@ -1096,10 +1423,17 @@ G.fracdiv = () => {
     ds: [Of(F(T * n, d), 'frac_div_as_mult'), Of(F(n, d * T), 'div_order_reversed'), Of(F(ans + 1, 1))],
     fill: () => Of(F(ans + R.pick([2, -1, -2]), 1)),
     sol: `${T} ${DIVIDE} ${s} = ${T} ${TIMES} ${fr(d, n)} = ${ans}.`,
+    steps: [
+      `“How many ${s}s fit in ${T}?” is a division question: ${T} ${DIVIDE} ${s}.`,
+      `Keep ${T}, change ${DIVIDE} to ${TIMES}, flip ${s} to ${fr(d, n)}.`,
+      n === 1 ? `${T} ${TIMES} ${fr(d, 1)} = ${T} ${TIMES} ${d} = ${ans}.` : `${T} ${TIMES} ${fr(d, n)} = ${fr(T * d, n)} = ${T * d} ${DIVIDE} ${n} = ${ans}.`,
+      n === 1 ? `Check: each whole has ${d} of them, and ${T} ${TIMES} ${d} = ${ans}.` : `Check: ${ans} pieces ${TIMES} ${s} = ${fr(ans * n, d)} = ${T}.`,
+    ],
   });
 };
 
 // ===== Section C: Decimals & place value =====
+const DEC_PLACES = ['tenths', 'hundredths', 'thousandths'];
 G.placevalue = () => {
   if (R.chance(0.5)) {
     const len = R.int(5, 6), p = R.int(2, len - 1), t = R.int(1, 9);
@@ -1111,6 +1445,12 @@ G.placevalue = () => {
       ds: [On(v / 10, 'pv_off_by_one'), On(v * 10, 'pv_off_by_one'), On(t, 'pv_face_value')],
       fill: () => null,
       sol: `The ${t} is in the ${['ones', 'tens', 'hundreds', 'thousands', 'ten-thousands', 'hundred-thousands'][p]} place, so it is worth ${num(v)}.`,
+      work: placeChart(String(n), len - 1 - p),
+      steps: [
+        'Name the places from the right: ones, tens, hundreds, thousands, ten thousands, hundred thousands.',
+        `The ${t} is in the ${PLACES[p]} place.`,
+        `So it is worth ${t} ${TIMES} ${num(10 ** p)} = ${num(v)}, not just ${t}.`,
+      ],
     });
   }
   const t = R.int(1, 9), nd = R.int(2, 3), q = R.int(1, nd);
@@ -1123,7 +1463,13 @@ G.placevalue = () => {
     prompt: `What is the value of the digit <b>${t}</b> in ${num(n)}?`, correct: On(v),
     ds: [On(t * Math.pow(10, q), 'pv_decimal_whole'), On(v / 10, 'pv_off_by_one'), On(t, 'pv_face_value'), On(v * 10, 'pv_off_by_one')],
     fill: () => null,
-    sol: `The ${t} is in the ${['tenths', 'hundredths', 'thousandths'][q - 1]} place, so it is worth ${num(v)}.`,
+    sol: `The ${t} is in the ${DEC_PLACES[q - 1]} place, so it is worth ${num(v)}.`,
+    work: placeChart(whole.join('') + '.' + dec.join(''), whole.length + q),
+    steps: [
+      'After the decimal point, the places are tenths, hundredths, thousandths. (Tenths, not tens: they are smaller than 1.)',
+      `The ${t} is ${q} ${nth(q, 'place', 'places')} after the decimal point, in the ${DEC_PLACES[q - 1]} place.`,
+      `So it is worth ${t} ${t === 1 ? DEC_PLACES[q - 1].slice(0, -1) : DEC_PLACES[q - 1]} = ${fr(t, 10 ** q)} = ${num(v)}.`,
+    ],
   });
 };
 
@@ -1132,10 +1478,17 @@ G.comparedec = () => {
   let b2; do { b2 = R.int(1, 9); } while (b2 === b1);
   const dd = R.int(a + 1, 9);
   const corr = W + a / 10, A = W + (a - 1) / 10 + b1 / 100 + c1 / 1000, B = W + (a - 1) / 10 + b2 / 100, C = W + dd / 100;
+  const three = x => x.toFixed(3);
   return makeItem({
     prompt: 'Which number is the <b>greatest</b>?',
     fixed: [{ h: num(corr), c: true }, { h: num(A), m: 'dec_longer_bigger' }, { h: num(B), m: 'dec_longer_bigger' }, { h: num(C), m: 'dec_ignore_zero' }],
     sol: `Line up the decimal points and compare tenths first: ${num(corr)} has ${a} tenths, more than any of the others.`,
+    work: stackWork([corr, A, B, C].map(three)),
+    steps: [
+      'Line up the decimal points. Add zeros at the end so every number has the same number of digits. Adding zeros at the end doesn’t change the value.',
+      `The whole-number parts are all ${W}, so compare the tenths (the first digit after the point): ${a}, ${a - 1}, ${a - 1} and 0.`,
+      `${num(corr)} has the most tenths, so it is the greatest, even though it has fewer digits.`,
+    ],
   });
 };
 
@@ -1148,27 +1501,45 @@ G.fracdec = () => {
       ds: [On(n / 10, 'pv_tenths_hundredths'), O(`${n}.100`, 'fd' + n, 'dec_frac_digits'), On(n / 1000, 'pv_tenths_hundredths')],
       fill: () => null,
       sol: `${fr(n, 100)} means ${n} hundredths, which is ${num(n / 100)}.`,
+      steps: [
+        `${fr(n, 100)} means ${n} hundredths.`,
+        'Hundredths is the second place after the decimal point.',
+        n < 10 ? `${n} hundredths has only one digit, so put a 0 in the tenths place: ${num(n / 100)}.` : `Write ${n} so it ends in the hundredths place: ${num(n / 100)}.`,
+      ],
     });
   }
   const d = R.pick([2, 4, 5]); let n; do { n = R.int(1, d - 1); } while (gcd(n, d) !== 1);
-  const inv = d / n, term = isInt(inv * 1000);
+  const inv = d / n, term = isInt(inv * 1000), k = 100 / d;
   return makeItem({
     prompt: `Which decimal is equal to ${fr(n, d)}?`, correct: On(n / d),
     ds: [On(Number(`0.${n}${d}`), 'dec_frac_digits'), On(n / 10, 'dec_numerator_tenths'), term ? On(inv, 'div_order_reversed') : null],
     fill: () => { const x = round6(n / d + R.pick([0.1, -0.05, 0.05, 0.15])); return x > 0 ? On(x) : null; },
     sol: `Make the bottom 10 or 100: ${fr(n, d)} = ${fr(n * 100 / d, 100)} = ${num(n / d)}.`,
+    steps: [
+      `Make the bottom 100: ${d} ${TIMES} ${k} = 100.`,
+      `Multiply the top by ${k} too: ${n} ${TIMES} ${k} = ${n * k}. So ${fr(n, d)} = ${fr(n * k, 100)}.`,
+      `${n * k} hundredths = ${(n * k / 100).toFixed(2) === num(n / d) ? num(n / d) : `${(n * k / 100).toFixed(2)} = ${num(n / d)}`}.`,
+      `(Another way: a fraction bar means divide, and ${n} ${DIVIDE} ${d} = ${num(n / d)}.)`,
+    ],
   });
 };
 
 G.decaddsub = () => {
   if (R.chance(0.55)) {
     let aw, ad, bw, bd; do { aw = R.int(10, 49); ad = R.int(1, 9); bw = R.int(1, 9); bd = R.int(11, 89); } while (bd % 10 === 0 || ad + bd >= 100);
-    const a = aw + ad / 10, b = bw + bd / 100, c = round6(a + b);
+    const a = aw + ad / 10, b = bw + bd / 100, c = round6(a + b), A = aw * 100 + ad * 10, Bn = bw * 100 + bd;
     return makeItem({
       prompt: `${num(a)} + ${num(b)} = ?`, correct: On(c),
       ds: [On((aw * 10 + ad + bw * 100 + bd) / 100, 'dec_align_right'), On(aw + bw + (ad + bd) / 100, 'dec_parts_separate'), On(c + 1)],
       fill: nearFill(c, [0.1, -0.1, 1, -1, 0.01]),
       sol: `Line up the decimal points (write ${num(a)} as ${aw}.${ad}0): ${aw}.${ad}0 + ${num(b)} = ${num(c)}.`,
+      work: colWork([{ s: `${aw}.${ad}0` }, { op: '+', s: b.toFixed(2) }], c.toFixed(2)),
+      steps: [
+        `Line up the decimal points, not the last digits. Write ${num(a)} as ${aw}.${ad}0 so both numbers have two digits after the point.`,
+        `Add as if the decimal points weren’t there: ${A} + ${Bn} = ${A + Bn}.`,
+        `Put the decimal point back in the same column: ${c.toFixed(2)}.`,
+        `Check by estimating: about ${Math.round(a)} + ${Math.round(b)} = ${Math.round(a) + Math.round(b)}.`,
+      ],
     });
   }
   let a, bw, bd; do { a = R.int(6, 20); bw = R.int(1, a - 2); bd = R.int(11, 89); } while (bd % 10 === 0);
@@ -1178,6 +1549,13 @@ G.decaddsub = () => {
     ds: [On(a - bw + bd / 100, 'dec_sub_bring_down'), On(c + 1), On(c - 0.1)],
     fill: nearFill(c, [0.1, -1, 0.01, 1.1]),
     sol: `Write ${a} as ${a}.00, then subtract: ${a}.00 ${MINUS} ${num(b)} = ${num(c)}.`,
+    work: colWork([{ s: `${a}.00` }, { op: MINUS, s: b.toFixed(2) }], c.toFixed(2)),
+    steps: [
+      `A whole number has a decimal point at the end: write ${a} as ${a}.00 so both numbers have two digits after the point.`,
+      `You can’t just bring down the .${String(bd).padStart(2, '0')}. Subtract it from the zeros by regrouping, like whole numbers: ${a * 100} ${MINUS} ${bw * 100 + bd} = ${Math.round(c * 100)}.`,
+      `Put the decimal point back in the same column: ${c.toFixed(2)}.`,
+      `Check by adding back: ${c.toFixed(2)} + ${b.toFixed(2)} = ${a}.00.`,
+    ],
   });
 };
 
@@ -1190,31 +1568,48 @@ G.decmult = () => {
     else { a = R.int(11, 39) / 10; b = R.int(2, 9); }
   } while (decPlaces(a) + decPlaces(b) < (t === 2 ? 2 : 1) || (t === 2 && decPlaces(b) < 2));
   const c = round6(a * b), pa = decPlaces(a), pb = decPlaces(b), A = round6(a * Math.pow(10, pa)), B = round6(b * Math.pow(10, pb));
+  const check = t === 3 ? `Check by estimating: about ${Math.round(a)} ${TIMES} ${b} = ${Math.round(a) * b}, which is close to ${num(c)}.`
+    : `Check: ${num(b)} is less than 1, so the answer must be less than ${num(a)}.`;
   return makeItem({
     prompt: `${num(a)} ${TIMES} ${num(b)} = ?`, correct: On(c),
     ds: [On(c * 10, 'dec_mult_places'), On(c / 10, 'dec_mult_places'), On(c + (t === 2 ? 0.1 : 1))],
     fill: nearFill(c, [0.2, -0.1, 2], null, 0.001),
     sol: `${A} ${TIMES} ${B} = ${num(A * B)}. The factors have ${pa + pb} decimal place${pa + pb > 1 ? 's' : ''} in all, so the answer is ${num(c)}.`,
+    steps: [
+      `Multiply as if the decimal points weren’t there: ${A} ${TIMES} ${B} = ${num(A * B)}.`,
+      `Count the digits after the decimal points: ${num(a)} has ${pa} and ${num(b)} has ${pb}, so ${pa + pb} in all.`,
+      `Start at the end of ${num(A * B)} and move the decimal point ${pa + pb} ${nth(pa + pb, 'place', 'places')} to the left: ${num(c)}.`,
+      check,
+    ],
   });
 };
 
 G.decdiv = () => {
   if (R.chance(0.5)) {
     let q; do { q = R.int(11, 49) / 10; } while (isInt(q));
-    const w = R.int(2, 9), n = round6(q * w);
+    const w = R.int(2, 9), n = round6(q * w), N = Math.round(n * 10), Q = Math.round(q * 10), L = longDiv(N, w);
     return makeItem({
       prompt: `${num(n)} ${DIVIDE} ${w} = ?`, correct: On(q),
       ds: [On(q * 10, 'dec_div_places'), On(q / 10, 'dec_div_places'), On(q + 1)],
       fill: nearFill(q, [0.1, -0.1, 0.2]),
       sol: `${num(n)} ${DIVIDE} ${w} = ${num(q)}. Check: ${num(q)} ${TIMES} ${w} = ${num(n)}.`,
+      work: L.work,
+      steps: [`Think of ${num(n)} as ${N} tenths, and divide the tenths by ${w}.`, ...L.steps, `${Q} tenths = ${num(q)}. The decimal point goes straight up into the answer.`, `Check: ${num(q)} ${TIMES} ${w} = ${num(n)}.`],
     });
   }
-  const dv = R.int(2, 9) / 10, q = R.int(3, 30), n = round6(q * dv);
+  const dv = R.int(2, 9) / 10, q = R.int(3, 30), n = round6(q * dv), N = Math.round(n * 10), D = Math.round(dv * 10), L = longDiv(N, D);
   return makeItem({
     prompt: `${num(n)} ${DIVIDE} ${num(dv)} = ?`, correct: On(q),
     ds: [On(q / 10, 'dec_div_places'), On(q * 10, 'dec_div_places'), On(q + 1)],
     fill: nearFill(q, [2, -1, -2]),
     sol: `Move both decimal points one place right: ${num(n * 10)} ${DIVIDE} ${num(dv * 10)} = ${q}.`,
+    work: L.work,
+    steps: [
+      `Make the number you divide by a whole number: multiply both numbers by 10 (move both decimal points one place right).`,
+      `${num(n)} ${DIVIDE} ${num(dv)} becomes ${N} ${DIVIDE} ${D}. Same answer, easier problem.`,
+      ...L.steps,
+      `Check: ${q} ${TIMES} ${num(dv)} = ${num(n)}. Dividing by a number less than 1 gives a bigger answer.`,
+    ],
   });
 };
 
@@ -1232,12 +1627,14 @@ G.ratiomeaning = () => {
   if (R.chance(0.5)) return makeItem({
     prompt: `${c.s(x, y)} What is the ratio of ${c.a} to ${c.b}?`, correct: rt(x, y),
     ds: [rt(y, x, 'ratio_order'), rt(x, T, 'ratio_part_whole'), rt(y, T, 'ratio_part_whole')],
-    sol: `${c.a[0].toUpperCase() + c.a.slice(1)} to ${c.b}, in that order: ${x} : ${y}.`,
+    sol: `${cap(c.a)} to ${c.b}, in that order: ${x} : ${y}.`,
+    steps: [`A ratio follows the order of the words. “${cap(c.a)} to ${c.b}” means ${c.a} first, ${c.b} second.`, `${cap(c.a)}: ${x}. ${cap(c.b)}: ${y}.`, `So the ratio is ${x} : ${y}. (${y} : ${x} would be ${c.b} to ${c.a}.)`],
   });
   return makeItem({
     prompt: `${c.s(x, y)} What is the ratio of ${c.a} to all the ${c.all}?`, correct: rt(x, T),
     ds: [rt(x, y, 'ratio_part_whole'), rt(T, x, 'ratio_order'), rt(y, T, 'ratio_order')],
     sol: `There are ${x} + ${y} = ${T} ${c.all} in all, so the ratio is ${x} : ${T}.`,
+    steps: [`“All the ${c.all}” means the total, so add first: ${x} + ${y} = ${T}.`, `${cap(c.a)} come first, then the total.`, `So the ratio is ${x} : ${T}.`],
   });
 };
 
@@ -1245,14 +1642,21 @@ G.equivratio = () => {
   if (R.chance(0.6)) {
     let a, b; do { a = R.int(2, 9); b = R.int(2, 9); } while (a === b);
     const k = R.int(2, 6), c = b * k, ans = a * k;
-    const prompt = R.pick([
-      `A recipe uses ${a} cups of flour for every ${b} cups of sugar. How many cups of flour go with ${c} cups of sugar?`,
-      `To make green paint, Leo mixes ${a} cans of blue for every ${b} cans of yellow. How many cans of blue does he need for ${c} cans of yellow?`,
-      `A field trip has ${a} students for every ${b} adults. How many students are there if ${c} adults go?`,
+    const ctx = R.pick([
+      [`A recipe uses ${a} cups of flour for every ${b} cups of sugar. How many cups of flour go with ${c} cups of sugar?`, 'Flour', 'Sugar'],
+      [`To make green paint, Leo mixes ${a} cans of blue for every ${b} cans of yellow. How many cans of blue does he need for ${c} cans of yellow?`, 'Blue', 'Yellow'],
+      [`A field trip has ${a} students for every ${b} adults. How many students are there if ${c} adults go?`, 'Students', 'Adults'],
     ]);
     return makeItem({
-      prompt, correct: On(ans), ds: [On(a + c - b, 'ratio_additive'), On(a * c, 'ratio_scale_wrong'), On(ans + a)], fill: nearFill(ans, [-a, 2 * a, 1]),
+      prompt: ctx[0], correct: On(ans), ds: [On(a + c - b, 'ratio_additive'), On(a * c, 'ratio_scale_wrong'), On(ans + a)], fill: nearFill(ans, [-a, 2 * a, 1]),
       sol: `${c} is ${k} times ${b}, so multiply ${a} by ${k} too: ${a} ${TIMES} ${k} = ${ans}.`,
+      work: `<div class="work-wrap">${tableH([[ctx[1], a, ans], [ctx[2], b, c]])}</div>`,
+      steps: [
+        `Make a ratio table: ${a} ${ctx[1].toLowerCase()} go with ${b} ${ctx[2].toLowerCase()}.`,
+        `How did ${b} become ${c}? ${b} ${TIMES} ${k} = ${c}.`,
+        `Do the same to the other number: ${a} ${TIMES} ${k} = ${ans}.`,
+        `Adding ${c - b} to both numbers would not work: a ratio stays the same only when you multiply both numbers by the same number.`,
+      ],
     });
   }
   let a, b; do { a = R.int(2, 7); b = R.int(2, 9); } while (a === b);
@@ -1263,6 +1667,11 @@ G.equivratio = () => {
     fig: tableH([[xl, a, a * k1, a * k2], [yl, b, b * k1, '?']]),
     correct: On(ans), ds: [On(b * k1 + a * (k2 - k1), 'ratio_additive'), On(ans + b), On(ans - b)], fill: nearFill(ans, [1, -1, 2 * b]),
     sol: `${a * k2} is ${k2} times ${a}, so multiply ${b} by ${k2}: ${ans}.`,
+    steps: [
+      `Compare the last column with the first: ${a} ${TIMES} ${k2} = ${a * k2}.`,
+      `Multiply the bottom number by the same amount: ${b} ${TIMES} ${k2} = ${ans}.`,
+      `Check with the middle column: ${a} ${TIMES} ${k1} = ${a * k1} and ${b} ${TIMES} ${k1} = ${b * k1}. Same pattern.`,
+    ],
   });
 };
 
@@ -1271,27 +1680,53 @@ G.unitrate = () => {
     const [pl, sg] = R.pick([['apples', 'apple'], ['notebooks', 'notebook'], ['pens', 'pen'], ['bottles of water', 'bottle of water'], ['muffins', 'muffin']]);
     const n = R.int(3, 8), u = round6(R.int(5, 60) * 0.05), P = round6(n * u);
     const M = (x, m) => O(money(x), 'm' + money(x), m);
+    const cents = Math.round(P * 100), L = longDiv(cents, n);
     return makeItem({
       prompt: `${n} ${pl} cost ${money(P)}. What is the cost of 1 ${sg}?`, correct: M(u),
       ds: [M(n / P, 'rate_inverted'), M(n * P, 'rate_multiplied'), M(u / 10, 'dec_div_places')],
       fill: () => M(u + R.pick([0.1, -0.05, 0.2])),
       sol: `${money(P)} ${DIVIDE} ${n} = ${money(u)} for each ${sg}.`,
+      work: L.work,
+      steps: [
+        `The cost of 1 is the total split into ${n} equal parts, so divide: ${money(P)} ${DIVIDE} ${n}.`,
+        `Work in cents to keep it simple: ${money(P)} = ${cents}¢.`,
+        ...L.steps,
+        `${Math.round(u * 100)}¢ = ${money(u)}.`,
+        `Check: ${money(u)} ${TIMES} ${n} = ${money(P)}.`,
+      ],
     });
   }
   const c = R.pick([
-    { s: R.int(35, 65), h: R.int(2, 5), q: (d, h) => `A car travels ${d} miles in ${h} hours at a steady speed. How many miles does it travel in 1 hour?`, u: 'miles' },
-    { s: R.int(30, 80), h: R.int(2, 6), q: (d, h) => `${R.pick(NAMES)} types ${d} words in ${h} minutes. How many words is that per minute?`, u: 'words' },
-    { s: R.int(9, 18), h: R.int(3, 8), q: (d, h) => `${R.pick(NAMES)} earns $${d} for ${h} hours of babysitting. How many dollars is that per hour?`, u: 'dollars' },
+    { s: R.int(35, 65), h: R.int(2, 5), q: (d, h) => `A car travels ${d} miles in ${h} hours at a steady speed. How many miles does it travel in 1 hour?`, u: 'miles', per: 'hour' },
+    { s: R.int(30, 80), h: R.int(2, 6), q: (d, h) => `${R.pick(NAMES)} types ${d} words in ${h} minutes. How many words is that per minute?`, u: 'words', per: 'minute' },
+    { s: R.int(9, 18), h: R.int(3, 8), q: (d, h) => `${R.pick(NAMES)} earns $${d} for ${h} hours of babysitting. How many dollars is that per hour?`, u: 'dollars', per: 'hour' },
   ]);
-  const d = c.s * c.h;
+  const d = c.s * c.h, LD = longDiv(d, c.h);
   return makeItem({
     prompt: c.q(d, c.h), correct: On(c.s, null, c.u),
     ds: [On(d * c.h, 'rate_multiplied', c.u), O(fH(F(c.h, d)) + ' ' + c.u, 'inv', 'rate_inverted'), On(d - c.h, 'wrong_operation', c.u)],
     fill: nearFill(c.s, [5, -5, 10], c.u),
     sol: `${d} ${DIVIDE} ${c.h} = ${c.s} ${c.u} for each 1.`,
+    work: LD.work,
+    steps: [
+      `“Per ${c.per}” means for 1 ${c.per}. Split the total into ${c.h} equal parts: ${d} ${DIVIDE} ${c.h}.`,
+      ...LD.steps,
+      `Check: ${c.s} ${TIMES} ${c.h} = ${d}.`,
+    ],
   });
 };
 
+// How to find p% of N the way it's taught: 10%, halves and quarters.
+function percentSteps(p, N) {
+  const c = p * N / 100, ten = N / 10;
+  if (p === 50) return [`50% is half. Half of ${N} is ${N} ${DIVIDE} 2 = ${num(c)}.`];
+  if (p === 25) return [`25% is one quarter. ${N} ${DIVIDE} 4 = ${num(c)}.`];
+  if (p === 75) return [`75% is three quarters. One quarter: ${N} ${DIVIDE} 4 = ${num(N / 4)}.`, `Three quarters: ${num(N / 4)} ${TIMES} 3 = ${num(c)}.`];
+  if (p === 10) return [`10% means divide by 10: ${N} ${DIVIDE} 10 = ${num(c)}.`];
+  if (p === 5) return [`First find 10%: ${N} ${DIVIDE} 10 = ${num(ten)}.`, `5% is half of 10%: ${num(ten)} ${DIVIDE} 2 = ${num(c)}.`];
+  if (p === 15) return [`First find 10%: ${N} ${DIVIDE} 10 = ${num(ten)}.`, `5% is half of that: ${num(ten / 2)}.`, `15% = 10% + 5% = ${num(ten)} + ${num(ten / 2)} = ${num(c)}.`];
+  return [`First find 10%: ${N} ${DIVIDE} 10 = ${num(ten)}.`, `${p}% is ${p / 10} groups of 10%: ${p / 10} ${TIMES} ${num(ten)} = ${num(c)}.`];
+}
 const PCT = [[10, 10], [20, 5], [25, 4], [30, 10], [40, 5], [50, 2], [60, 5], [75, 4], [5, 20], [15, 20]];
 G.percentof = () => {
   const [p, m] = R.pick(PCT); let N; do { N = m * R.int(2, 20); } while (N < 20 || N > 200);
@@ -1301,6 +1736,7 @@ G.percentof = () => {
     ds: [N - p > 0 ? On(N - p, 'pct_subtract') : null, On(c >= 10 ? c / 10 : c * 10, 'pct_decimal'), isInt(N / p) ? On(N / p, 'pct_divide') : null, On(c + N / 10)],
     fill: nearFill(c, [N / 10, -N / 10, 5, -5, 1]),
     sol: `${p}% means ${p} out of 100. ${p}% of ${N} = ${fr(p, 100)} ${TIMES} ${N} = ${num(c)}.`,
+    steps: [`${p}% means ${p} out of every 100.`, ...percentSteps(p, N)],
   });
   const item = R.pick(['jacket', 'video game', 'pair of shoes', 'backpack']);
   return makeItem({
@@ -1308,6 +1744,7 @@ G.percentof = () => {
     ds: [O(dollars(N - c), kn(N - c), 'pct_sale_price'), N - p > 0 ? O(dollars(N - p), kn(N - p), 'pct_subtract') : null, O(dollars(c >= 10 ? c / 10 : c * 10), kn(c >= 10 ? c / 10 : c * 10), 'pct_decimal')],
     fill: () => { const x = round6(c + R.pick([5, -5, 1, 2])); return x > 0 ? O(dollars(x), kn(x)) : null; },
     sol: `${p}% of $${N} = ${dollars(c)}. (The sale price would be ${dollars(N - c)}.)`,
+    steps: [`The discount is the amount taken off: ${p}% of $${N}.`, ...percentSteps(p, N), `So the discount is ${dollars(c)}. (The sale price would be $${N} ${MINUS} ${dollars(c)} = ${dollars(N - c)}, but the question asks for the discount.)`],
   });
 };
 
@@ -1321,16 +1758,28 @@ G.percentfind = () => {
       ds: [P(part, 'pct_part_is_percent'), P(100 - p, 'pct_complement'), isInt(whole / part) ? P(whole / part, 'pct_whole_over_part') : null],
       fill: () => { const x = p + R.pick([5, -5, 10, -10, 15]); return x > 0 && x < 100 ? P(x) : null; },
       sol: `${part} ${DIVIDE} ${whole} = ${num(part / whole)}, which is ${p}%.`,
+      steps: [
+        `Write it as a fraction: part over whole = ${fr(part, whole)}.`,
+        `Divide: ${part} ${DIVIDE} ${whole} = ${num(part / whole)}.`,
+        `Percent means out of 100, so multiply by 100: ${num(part / whole)} ${TIMES} 100 = ${p}%.`,
+        `(${part} is the number of ${prompt.includes('test') ? 'questions' : 'students'}, not the percent.)`,
+      ],
     });
   }
   const p = R.pick([10, 20, 25, 30, 40, 50, 60, 75]); let whole; do { whole = R.int(2, 20) * R.pick([4, 5, 10]); } while ((whole * p) % 100 !== 0 || whole < 20 || whole > 200);
   const part = whole * p / 100;
   const prompt = R.pick([`${part} is ${p}% of what number?`, `A store sold ${part} T-shirts on Monday. That was ${p}% of all its T-shirts. How many T-shirts did the store have?`, `${part} students walk to school. That is ${p}% of all the students in the grade. How many students are in the grade?`]);
+  const how = 100 % p === 0
+    ? [`${p}% is ${fr(1, 100 / p)} of the total.`, `So the total is ${100 / p} times as big: ${part} ${TIMES} ${100 / p} = ${whole}.`]
+    : p % 10 === 0
+      ? [`${p}% is ${p / 10} groups of 10%. So 10% is ${part} ${DIVIDE} ${p / 10} = ${num(part / (p / 10))}.`, `The total is 100%, which is 10 groups of 10%: ${num(part / (p / 10))} ${TIMES} 10 = ${whole}.`]
+      : [`75% is three quarters. So one quarter (25%) is ${part} ${DIVIDE} 3 = ${num(part / 3)}.`, `The total is four quarters: ${num(part / 3)} ${TIMES} 4 = ${whole}.`];
   return makeItem({
     prompt, correct: On(whole),
     ds: [On(part * p / 100, 'pct_find_whole_wrong'), On(part / p, 'pct_no_100'), On(part + p, 'pct_add')],
     fill: nearFill(whole, [10, -10, 20, part]),
     sol: `If ${p}% is ${part}, then 1% is ${num(part / p)}, and 100% is ${num(part / p)} ${TIMES} 100 = ${whole}.`,
+    steps: [`${part} is only part of the total. The total is 100%, so the answer must be bigger than ${part}.`, ...how, `Check: ${p}% of ${whole} = ${part}.`],
   });
 };
 
@@ -1347,6 +1796,7 @@ G.exponents = () => {
       ds: [On(b * e, 'exp_times'), sw <= 2000 ? On(sw, 'exp_swap') : null, On(Math.pow(b, e - 1)), On(b + e)],
       fill: nearFill(c, [b, -b, 2 * b]),
       sol: `${b}<sup>${e}</sup> = ${Array(e).fill(b).join(` ${TIMES} `)} = ${c}.`,
+      steps: [`The small ${e} means: multiply ${b} by itself ${e} times. It does not mean ${b} ${TIMES} ${e}.`, `${b}<sup>${e}</sup> = ${Array(e).fill(b).join(` ${TIMES} `)}.`, ...Array.from({ length: e - 1 }, (_, i) => `${num(b ** (i + 1))} ${TIMES} ${b} = ${num(b ** (i + 2))}.`)],
     });
   }
   if (R.chance(0.5)) {
@@ -1356,6 +1806,7 @@ G.exponents = () => {
       ds: [On(a + 2 * b * c, 'exp_times'), On((a + b * b) * c, 'oop_left_to_right'), On(a + b * b + c, 'wrong_operation')],
       fill: nearFill(ans, [2, -2, 5]),
       sol: `Exponent first: ${b}<sup>2</sup> = ${b * b}. Then ${b * b} ${TIMES} ${c} = ${b * b * c}. Then ${a} + ${b * b * c} = ${ans}.`,
+      steps: ['Order: exponents first, then multiply, then add.', `${b}<sup>2</sup> = ${b} ${TIMES} ${b} = ${b * b}.`, `Multiply: ${b * b} ${TIMES} ${c} = ${b * b * c}.`, `Add: ${a} + ${b * b * c} = ${ans}.`],
     });
   }
   const a = R.int(1, 6), b = R.int(2, 6), ans = (a + b) * (a + b);
@@ -1364,6 +1815,7 @@ G.exponents = () => {
     ds: [On(a * a + b * b, 'exp_distribute'), On(2 * (a + b), 'exp_times'), On(a + b * b, 'oop_ignore_parens')],
     fill: nearFill(ans, [a + b, -(a + b), 1]),
     sol: `Parentheses first: ${a} + ${b} = ${a + b}. Then ${a + b}<sup>2</sup> = ${a + b} ${TIMES} ${a + b} = ${ans}.`,
+      steps: [`Parentheses first: ${a} + ${b} = ${a + b}.`, `Then square it: ${a + b}<sup>2</sup> = ${a + b} ${TIMES} ${a + b} = ${ans}.`, `(Squaring ${a} and ${b} separately gives ${a * a} + ${b * b} = ${a * a + b * b}, which is not the same.)`],
   });
 };
 
@@ -1374,36 +1826,42 @@ G.writeexpr = () => {
     a = R.int(3, 12);
     return makeItem({ prompt: `Which expression means \u201c${a} less than a number ${X}\u201d?`, correct: S(`${X} ${MINUS} ${a}`),
       ds: [SM(`${a} ${MINUS} ${X}`, 'expr_less_than'), SM(`${a} &lt; ${X}`, 'expr_less_symbol'), SM(`${X} + ${a}`, 'wrong_operation')],
-      sol: `\u201c${a} less than ${X}\u201d means start with ${X} and take away ${a}: ${X} ${MINUS} ${a}.` });
+      sol: `\u201c${a} less than ${X}\u201d means start with ${X} and take away ${a}: ${X} ${MINUS} ${a}.`,
+      steps: [`\u201cLess than\u201d flips the order. \u201c${a} less than ${X}\u201d means start with ${X} and make it ${a} smaller.`, `Example: 3 less than 10 is 10 ${MINUS} 3 = 7, so the number you start with comes first.`, `So the expression is ${X} ${MINUS} ${a}. (The &lt; symbol means something else: \u201cis less than.\u201d)`] });
   }
   if (t === 2) {
     do { a = R.int(3, 9); b = R.int(2, 9); } while (a === b);
     return makeItem({ prompt: `Which expression means \u201cthe product of ${a} and a number ${X}, plus ${b}\u201d?`, correct: S(`${a}${X} + ${b}`),
       ds: [SM(`${a}(${X} + ${b})`, 'expr_grouping'), SM(`${a} + ${X} + ${b}`, 'expr_product_sum'), SM(`${b}${X} + ${a}`, 'expr_swap')],
-      sol: `\u201cThe product of ${a} and ${X}\u201d is ${a}${X}; then add ${b}: ${a}${X} + ${b}.` });
+      sol: `\u201cThe product of ${a} and ${X}\u201d is ${a}${X}; then add ${b}: ${a}${X} + ${b}.`,
+      steps: [`\u201cProduct\u201d means multiply, so \u201cthe product of ${a} and ${X}\u201d is ${a} ${TIMES} ${X}, written ${a}${X}.`, `\u201cPlus ${b}\u201d comes after: ${a}${X} + ${b}.`, `No parentheses, because only ${X} is multiplied by ${a}.`] });
   }
   if (t === 3) {
     a = R.int(2, 9);
     return makeItem({ prompt: `Which expression means \u201cthe quotient of a number ${X} and ${a}\u201d?`, correct: S(`${X} ${DIVIDE} ${a}`),
       ds: [SM(`${a} ${DIVIDE} ${X}`, 'expr_order'), SM(`${a}${X}`, 'expr_quotient_product'), SM(`${X} ${MINUS} ${a}`, 'wrong_operation')],
-      sol: `\u201cQuotient\u201d means divide, in the order given: ${X} ${DIVIDE} ${a}.` });
+      sol: `\u201cQuotient\u201d means divide, in the order given: ${X} ${DIVIDE} ${a}.`,
+      steps: [`\u201cQuotient\u201d means the answer to a division.`, `Keep the order of the words: first ${X}, then ${a}.`, `${X} ${DIVIDE} ${a}.`] });
   }
   if (t === 4) {
     do { a = R.int(2, 9); b = R.int(2, 9); } while (a === b);
     return makeItem({ prompt: `Which expression means \u201c${a} times the sum of a number ${X} and ${b}\u201d?`, correct: S(`${a}(${X} + ${b})`),
       ds: [SM(`${a}${X} + ${b}`, 'expr_grouping'), SM(`${a} + ${X} + ${b}`, 'expr_product_sum'), SM(`${a} + ${b}${X}`, 'expr_swap')],
-      sol: `The sum (${X} + ${b}) is found first, so it goes in parentheses: ${a}(${X} + ${b}).` });
+      sol: `The sum (${X} + ${b}) is found first, so it goes in parentheses: ${a}(${X} + ${b}).`,
+      steps: [`\u201cThe sum of ${X} and ${b}\u201d is ${X} + ${b}.`, `\u201c${a} times the sum\u201d means the whole sum is multiplied, so it needs parentheses: ${a}(${X} + ${b}).`, `(${a}${X} + ${b} would multiply only the ${X}.)`] });
   }
   if (t === 5) {
     const T = V('t'); do { a = R.int(6, 15); b = R.int(2, 8); } while (a === b);
     return makeItem({ prompt: `Movie tickets cost $${a} each. There is also a $${b} fee for the whole order. Which expression shows the total cost, in dollars, of ${T} tickets?`, correct: S(`${a}${T} + ${b}`),
       ds: [SM(`${b}${T} + ${a}`, 'expr_swap'), SM(`${a}(${T} + ${b})`, 'expr_grouping'), SM(`${a + b}${T}`, 'like_terms_unlike')],
-      sol: `Each ticket costs $${a}, so ${T} tickets cost ${a}${T}. The $${b} fee is added once: ${a}${T} + ${b}.` });
+      sol: `Each ticket costs $${a}, so ${T} tickets cost ${a}${T}. The $${b} fee is added once: ${a}${T} + ${b}.`,
+      steps: [`Each ticket costs $${a}, so ${T} tickets cost ${a} ${TIMES} ${T} = ${a}${T} dollars.`, `The fee is paid once for the whole order, so add it at the end: + ${b}.`, `Total: ${a}${T} + ${b}.`] });
   }
   const s = V('s'); a = R.int(3, 9); b = R.int(2, 4); const nm = R.pick(NAMES);
   return makeItem({ prompt: `${nm} has ${s} stickers, gives ${a} to a sister, then shares the rest equally among ${b} friends. Which expression shows how many stickers each friend gets?`, correct: S(`(${s} ${MINUS} ${a}) ${DIVIDE} ${b}`),
     ds: [SM(`${s} ${MINUS} ${a} ${DIVIDE} ${b}`, 'expr_grouping'), SM(`(${a} ${MINUS} ${s}) ${DIVIDE} ${b}`, 'expr_order'), SM(`${b}(${s} ${MINUS} ${a})`, 'expr_quotient_product')],
-    sol: `First take away ${a}: (${s} ${MINUS} ${a}). Then divide by ${b}: (${s} ${MINUS} ${a}) ${DIVIDE} ${b}.` });
+    sol: `First take away ${a}: (${s} ${MINUS} ${a}). Then divide by ${b}: (${s} ${MINUS} ${a}) ${DIVIDE} ${b}.`,
+      steps: [`Start with ${s} stickers and give away ${a}: ${s} ${MINUS} ${a}.`, `The rest is shared among ${b} friends, so divide all of it by ${b}.`, `Use parentheses so the subtraction happens first: (${s} ${MINUS} ${a}) ${DIVIDE} ${b}.`] });
 };
 
 G.evalexpr = () => {
@@ -1412,24 +1870,28 @@ G.evalexpr = () => {
     const a = R.int(2, 9), b = R.int(1, 15), x = R.int(2, 9), X = V(R.pick(['x', 'n', 'm'])), ans = a * x + b;
     return makeItem({ prompt: `What is the value of ${a}${X} + ${b} when ${X} = ${x}?`, correct: On(ans),
       ds: [On(Number(`${a}${x}`) + b, 'expr_concat'), On(a * (x + b), 'oop_add_first'), On(a + x + b, 'expr_coef_add')], fill: nearFill(ans, [1, -1, 2]),
-      sol: `${a}${X} means ${a} ${TIMES} ${X}: ${a} ${TIMES} ${x} + ${b} = ${a * x} + ${b} = ${ans}.` });
+      sol: `${a}${X} means ${a} ${TIMES} ${X}: ${a} ${TIMES} ${x} + ${b} = ${a * x} + ${b} = ${ans}.`,
+      steps: [`${a}${X} means ${a} ${TIMES} ${X}. Put ${x} in place of ${X}: ${a} ${TIMES} ${x} + ${b}.`, `Multiply first: ${a} ${TIMES} ${x} = ${a * x}.`, `Then add: ${a * x} + ${b} = ${ans}.`] });
   }
   if (t === 2) {
     const c = R.int(2, 5), a = R.int(2, 6), X = V(R.pick(['a', 'x', 'y'])), ans = c * a * a;
     return makeItem({ prompt: `What is the value of ${c}${X}<sup>2</sup> when ${X} = ${a}?`, correct: On(ans),
       ds: [On(c * a * c * a, 'exp_coefficient'), On(c * a * 2, 'exp_times'), On(a * a, 'expr_drop_term')], fill: nearFill(ans, [a, -a, c]),
-      sol: `Square first: ${a}<sup>2</sup> = ${a * a}. Then ${c} ${TIMES} ${a * a} = ${ans}.` });
+      sol: `Square first: ${a}<sup>2</sup> = ${a * a}. Then ${c} ${TIMES} ${a * a} = ${ans}.`,
+      steps: [`Put ${a} in place of ${X}: ${c} ${TIMES} ${a}<sup>2</sup>.`, `Exponent first: ${a}<sup>2</sup> = ${a} ${TIMES} ${a} = ${a * a}.`, `Then multiply: ${c} ${TIMES} ${a * a} = ${ans}. Only the ${X} is squared, not the ${c}.`] });
   }
   if (t === 3) {
     const k = R.int(2, 6), q = R.int(3, 12), b = R.int(2, 9), m = k * q, M = V('m'), ans = q + b;
     return makeItem({ prompt: `What is the value of ${M} ${DIVIDE} ${k} + ${b} when ${M} = ${m}?`, correct: On(ans),
       ds: [m % (k + b) === 0 ? On(m / (k + b), 'oop_add_first') : null, (m + b) % k === 0 ? On((m + b) / k, 'oop_add_first') : null, On(m * k + b, 'wrong_operation'), On(ans + 1)], fill: nearFill(ans, [2, -1, -2]),
-      sol: `Divide first: ${m} ${DIVIDE} ${k} = ${q}. Then ${q} + ${b} = ${ans}.` });
+      sol: `Divide first: ${m} ${DIVIDE} ${k} = ${q}. Then ${q} + ${b} = ${ans}.`,
+      steps: [`Put ${m} in place of ${M}: ${m} ${DIVIDE} ${k} + ${b}.`, `Divide before adding: ${m} ${DIVIDE} ${k} = ${q}.`, `Then add: ${q} + ${b} = ${ans}.`] });
   }
   const a = R.int(2, 6), x = R.int(3, 9), y = R.int(1, x - 1), X = V('x'), Y = V('y'), ans = a * x - y;
   return makeItem({ prompt: `What is the value of ${a}${X} ${MINUS} ${Y} when ${X} = ${x} and ${Y} = ${y}?`, correct: On(ans),
     ds: [On(a * (x - y), 'oop_add_first'), On(Number(`${a}${x}`) - y, 'expr_concat'), On(a + x - y, 'expr_coef_add')], fill: nearFill(ans, [1, -1, 2]),
-    sol: `${a} ${TIMES} ${x} = ${a * x}, then ${a * x} ${MINUS} ${y} = ${ans}.` });
+    sol: `${a} ${TIMES} ${x} = ${a * x}, then ${a * x} ${MINUS} ${y} = ${ans}.`,
+      steps: [`Put in the numbers: ${a} ${TIMES} ${x} ${MINUS} ${y}.`, `Multiply first: ${a} ${TIMES} ${x} = ${a * x}.`, `Then subtract: ${a * x} ${MINUS} ${y} = ${ans}.`] });
 };
 
 G.equivexpr = () => {
@@ -1438,25 +1900,29 @@ G.equivexpr = () => {
     const a = R.int(2, 9), b = R.int(2, 9);
     return makeItem({ prompt: `Which expression is equivalent to ${a}(${X} + ${b})?`, correct: S(`${a}${X} + ${a * b}`),
       ds: [SM(`${a}${X} + ${b}`, 'distrib_partial'), SM(`${X} + ${a * b}`, 'distrib_partial'), SM(`${a * b}${X}`, 'like_terms_unlike')],
-      sol: `Multiply ${a} by both terms: ${a} ${TIMES} ${X} + ${a} ${TIMES} ${b} = ${a}${X} + ${a * b}.` });
+      sol: `Multiply ${a} by both terms: ${a} ${TIMES} ${X} + ${a} ${TIMES} ${b} = ${a}${X} + ${a * b}.`,
+      steps: [`The ${a} outside the parentheses multiplies everything inside.`, `${a} ${TIMES} ${X} = ${a}${X}.`, `${a} ${TIMES} ${b} = ${a * b}.`, `So ${a}(${X} + ${b}) = ${a}${X} + ${a * b}.`] });
   }
   if (t === 2) {
     let a, b; do { a = R.int(2, 8); b = R.int(2, 8); } while (a === 2 && b === 2);
     const c = R.int(1, 9);
     return makeItem({ prompt: `Which expression is equivalent to ${a}${X} + ${b}${X} + ${c}?`, correct: S(`${a + b}${X} + ${c}`),
       ds: [SM(`${a + b + c}${X}`, 'like_terms_unlike'), SM(`${a * b}${X} + ${c}`, 'like_terms_multiply'), SM(`${a + b}${X}<sup>2</sup> + ${c}`, 'like_terms_power')],
-      sol: `${a}${X} and ${b}${X} are like terms: ${a}${X} + ${b}${X} = ${a + b}${X}. The ${c} has no ${X}, so it stays separate.` });
+      sol: `${a}${X} and ${b}${X} are like terms: ${a}${X} + ${b}${X} = ${a + b}${X}. The ${c} has no ${X}, so it stays separate.`,
+      steps: [`Like terms have the same letter part: ${a}${X} and ${b}${X} are like terms, but ${c} is not.`, `Add the like terms by adding the numbers in front: ${a} + ${b} = ${a + b}, so ${a}${X} + ${b}${X} = ${a + b}${X}.`, `The ${c} stays as it is: ${a + b}${X} + ${c}.`] });
   }
   if (t === 3) {
     const g = R.int(2, 6); let b, c; do { b = R.int(2, 7); c = R.int(2, 7); } while (gcd(b, c) !== 1 || b === c);
     return makeItem({ prompt: `Which expression is equivalent to ${g * b} + ${g * c}${X}?`, correct: S(`${g}(${b} + ${c}${X})`),
       ds: [SM(`${g}(${b} + ${g * c}${X})`, 'factor_partial'), SM(`${g * b + g * c}${X}`, 'like_terms_unlike'), S(`${g}(${b} + ${c + 1}${X})`)],
-      sol: `${g} is a factor of both terms: ${g * b} = ${g} ${TIMES} ${b} and ${g * c}${X} = ${g} ${TIMES} ${c}${X}, so ${g}(${b} + ${c}${X}).` });
+      sol: `${g} is a factor of both terms: ${g * b} = ${g} ${TIMES} ${b} and ${g * c}${X} = ${g} ${TIMES} ${c}${X}, so ${g}(${b} + ${c}${X}).`,
+      steps: [`Find the biggest number that divides both ${g * b} and ${g * c}: it is ${g}.`, `${g * b} = ${g} ${TIMES} ${b} and ${g * c}${X} = ${g} ${TIMES} ${c}${X}.`, `Take the ${g} out front: ${g}(${b} + ${c}${X}).`, `Check by multiplying back: ${g} ${TIMES} ${b} = ${g * b} and ${g} ${TIMES} ${c}${X} = ${g * c}${X}.`] });
   }
   const a = R.int(2, 9), b = R.int(2, 9);
   return makeItem({ prompt: `Which expression is equivalent to ${a}(${X} ${MINUS} ${b})?`, correct: S(`${a}${X} ${MINUS} ${a * b}`),
     ds: [SM(`${a}${X} ${MINUS} ${b}`, 'distrib_partial'), SM(`${a}${X} + ${a * b}`, 'distrib_sign'), SM(`${X} ${MINUS} ${a * b}`, 'distrib_partial')],
-    sol: `Multiply ${a} by both terms and keep the minus: ${a}${X} ${MINUS} ${a * b}.` });
+    sol: `Multiply ${a} by both terms and keep the minus: ${a}${X} ${MINUS} ${a * b}.`,
+      steps: [`The ${a} multiplies both terms inside, and the minus sign stays.`, `${a} ${TIMES} ${X} = ${a}${X}.`, `${a} ${TIMES} ${b} = ${a * b}, still subtracted.`, `So ${a}(${X} ${MINUS} ${b}) = ${a}${X} ${MINUS} ${a * b}.`] });
 };
 
 G.onestep = () => {
@@ -1465,27 +1931,32 @@ G.onestep = () => {
   if (t === 1) {
     const a = R.int(5, 40), x = R.int(3, 60), b = a + x;
     return makeItem({ prompt: `Solve: ${X} + ${a} = ${b}`, correct: A(x), ds: [A(b + a, 'eq_wrong_inverse'), A(x + 10), A(x - 1)], fill: near(x),
-      sol: `Subtract ${a} from both sides: ${X} = ${b} ${MINUS} ${a} = ${x}.` });
+      sol: `Subtract ${a} from both sides: ${X} = ${b} ${MINUS} ${a} = ${x}.`,
+      steps: [`${a} is added to ${X}. To undo adding, subtract ${a} from both sides.`, `${X} = ${b} ${MINUS} ${a} = ${x}.`, `Check: ${x} + ${a} = ${b}.`] });
   }
   if (t === 2) {
     const a = R.int(5, 30), b = R.int(3, 50), x = a + b;
     return makeItem({ prompt: `Solve: ${X} ${MINUS} ${a} = ${b}`, correct: A(x), ds: [b - a > 0 ? A(b - a, 'eq_wrong_inverse') : null, A(x + 10), A(x - 1)], fill: near(x),
-      sol: `Add ${a} to both sides: ${X} = ${b} + ${a} = ${x}.` });
+      sol: `Add ${a} to both sides: ${X} = ${b} + ${a} = ${x}.`,
+      steps: [`${a} is subtracted from ${X}. To undo subtracting, add ${a} to both sides.`, `${X} = ${b} + ${a} = ${x}.`, `Check: ${x} ${MINUS} ${a} = ${b}.`] });
   }
   if (t === 3) {
     const a = R.int(3, 12), x = R.int(3, 15), b = a * x;
     return makeItem({ prompt: `Solve: ${a}${X} = ${b}`, correct: A(x), ds: [A(a * b, 'eq_wrong_inverse'), A(b - a, 'eq_wrong_operation'), A(x + 1)], fill: near(x),
-      sol: `Divide both sides by ${a}: ${X} = ${b} ${DIVIDE} ${a} = ${x}.` });
+      sol: `Divide both sides by ${a}: ${X} = ${b} ${DIVIDE} ${a} = ${x}.`,
+      steps: [`${a}${X} means ${a} ${TIMES} ${X}. To undo multiplying, divide both sides by ${a}.`, `${X} = ${b} ${DIVIDE} ${a} = ${x}.`, `Check: ${a} ${TIMES} ${x} = ${b}.`] });
   }
   if (t === 4) {
     const a = R.int(2, 9), b = R.int(3, 15), x = a * b;
     return makeItem({ prompt: `Solve: ${fr(X, a)} = ${b}`, correct: A(x), ds: [b % a === 0 ? A(b / a, 'eq_wrong_inverse') : null, A(a + b, 'eq_wrong_operation'), b - a > 0 ? A(b - a, 'eq_wrong_operation') : null, A(x + a)], fill: near(x),
-      sol: `Multiply both sides by ${a}: ${X} = ${b} ${TIMES} ${a} = ${x}.` });
+      sol: `Multiply both sides by ${a}: ${X} = ${b} ${TIMES} ${a} = ${x}.`,
+      steps: [`${fr(X, a)} means ${X} ${DIVIDE} ${a}. To undo dividing, multiply both sides by ${a}.`, `${X} = ${b} ${TIMES} ${a} = ${x}.`, `Check: ${x} ${DIVIDE} ${a} = ${b}.`] });
   }
   let a, b; do { a = R.int(11, 89) / 10; b = R.int(Math.ceil(a) + 1, 20); } while (isInt(a));
   const x = round6(b - a);
   return makeItem({ prompt: `Solve: ${X} + ${num(a)} = ${b}`, correct: A(x), ds: [A(b + a, 'eq_wrong_inverse'), A(x + 1), A(x - 0.1)], fill: near(x),
-    sol: `Subtract ${num(a)} from both sides: ${X} = ${b} ${MINUS} ${num(a)} = ${num(x)}.` });
+    sol: `Subtract ${num(a)} from both sides: ${X} = ${b} ${MINUS} ${num(a)} = ${num(x)}.`,
+      steps: [`To undo adding ${num(a)}, subtract ${num(a)} from both sides.`, `${X} = ${b} ${MINUS} ${num(a)}. Write ${b} as ${b}.0 and subtract: ${num(x)}.`, `Check: ${num(x)} + ${num(a)} = ${b}.`] });
 };
 
 const ISYM = { gt: '&gt;', ge: '\u2265', lt: '&lt;', le: '\u2264' };
@@ -1496,7 +1967,8 @@ G.inequal = () => {
     const b = R.int(-3, 8), s = R.pick(['gt', 'ge', 'lt', 'le']), X = V('x'), mk = (ss, m) => O(`${X} ${ISYM[ss]} ${num(b)}`, ss, m);
     return makeItem({ prompt: 'Which inequality matches the graph?', fig: svgIneq(b, s), correct: mk(s),
       ds: [mk(IOC[s], 'ineq_open_closed'), mk(IDIR[s], 'ineq_direction'), mk(IBOTH[s], 'ineq_direction')],
-      sol: `${s === 'ge' || s === 'le' ? 'A closed (filled) circle means the number is included' : 'An open circle means the number is not included'}, and the arrow points ${s === 'gt' || s === 'ge' ? 'right (greater)' : 'left (less)'}: ${X} ${ISYM[s]} ${num(b)}.` });
+      sol: `${s === 'ge' || s === 'le' ? 'A closed (filled) circle means the number is included' : 'An open circle means the number is not included'}, and the arrow points ${s === 'gt' || s === 'ge' ? 'right (greater)' : 'left (less)'}: ${X} ${ISYM[s]} ${num(b)}.`,
+      steps: [s === 'ge' || s === 'le' ? `The circle at ${num(b)} is filled in, so ${num(b)} is included. Use \u2265 or \u2264.` : `The circle at ${num(b)} is open (empty), so ${num(b)} is not included. Use &gt; or &lt;.`, s === 'gt' || s === 'ge' ? `The arrow points right, toward bigger numbers, so ${X} is greater.` : `The arrow points left, toward smaller numbers, so ${X} is less.`, `Put them together: ${X} ${ISYM[s]} ${num(b)}.`] });
   }
   if (t === 2) {
     const c = R.pick([
@@ -1508,12 +1980,14 @@ G.inequal = () => {
     ]);
     const mk = (ss, m) => O(`${V(c.v)} ${ISYM[ss]} ${c.n}`, ss, m);
     return makeItem({ prompt: c.q(c.n, V(c.v)), correct: mk(c.s), ds: [mk(IOC[c.s], 'ineq_inclusive'), mk(IDIR[c.s], 'ineq_direction'), mk(IBOTH[c.s], 'ineq_direction')],
-      sol: `\u201cAt least\u201d means \u2265, \u201cat most\u201d or \u201cno more than\u201d means \u2264, \u201cmore than\u201d means &gt;, and \u201cbelow\u201d or \u201cless than\u201d means &lt;. The answer is ${V(c.v)} ${ISYM[c.s]} ${c.n}.` });
+      sol: `\u201cAt least\u201d means \u2265, \u201cat most\u201d or \u201cno more than\u201d means \u2264, \u201cmore than\u201d means &gt;, and \u201cbelow\u201d or \u201cless than\u201d means &lt;. The answer is ${V(c.v)} ${ISYM[c.s]} ${c.n}.`,
+      steps: [{ ge: `\u201cAt least ${c.n}\u201d means ${c.n} or more, so ${c.n} itself is allowed: \u2265.`, le: `\u201cAt most\u201d or \u201cno more than\u201d ${c.n} means ${c.n} or less, so ${c.n} itself is allowed: \u2264.`, gt: `\u201cMore than ${c.n}\u201d means bigger than ${c.n}, and ${c.n} itself doesn\u2019t count: &gt;.`, lt: `\u201cBelow ${c.n}\u201d means less than ${c.n}, and ${c.n} itself doesn\u2019t count: &lt;.` }[c.s], `Write the letter first: ${V(c.v)} ${ISYM[c.s]} ${c.n}.`] });
   }
   const b = R.int(3, 20), gt = R.chance(0.5), X = V('x');
   return makeItem({ prompt: `Which value of ${X} makes ${X} ${gt ? '&gt;' : '&lt;'} ${b} true?`, correct: On(gt ? b + 1 : b - 1),
     ds: [On(b, 'ineq_boundary'), On(gt ? b - 1 : b + 1, 'ineq_direction'), On(gt ? b - 2 : b + 2, 'ineq_direction')],
-    sol: `${X} ${gt ? '&gt;' : '&lt;'} ${b} means ${X} must be ${gt ? 'greater' : 'less'} than ${b} (not equal to it), so ${gt ? b + 1 : b - 1} works.` });
+    sol: `${X} ${gt ? '&gt;' : '&lt;'} ${b} means ${X} must be ${gt ? 'greater' : 'less'} than ${b} (not equal to it), so ${gt ? b + 1 : b - 1} works.`,
+      steps: [`${X} ${gt ? '&gt;' : '&lt;'} ${b} means ${X} is ${gt ? 'greater' : 'less'} than ${b}. ${b} itself does not count.`, `Check each choice: only ${gt ? b + 1 : b - 1} is ${gt ? 'bigger' : 'smaller'} than ${b}.`] });
 };
 
 G.tableeq = () => {
@@ -1523,13 +1997,15 @@ G.tableeq = () => {
     const k = R.int(3, 12), xs = R.chance(0.5) ? [1, 2, 3, 4] : [2, 3, 5, 8];
     return makeItem({ prompt: 'Which equation matches the table?', fig: tableH([[`${xl} (${X})`, ...xs], [`${yl} (${Y})`, ...xs.map(x => k * x)]]), correct: S(`${Y} = ${k}${X}`),
       ds: [SM(`${Y} = ${X} + ${k * xs[0] - xs[0]}`, 'rule_first_row'), SM(`${X} = ${k}${Y}`, 'var_swap'), SM(`${Y} = ${X} + ${k}`, 'rule_additive')],
-      sol: `Every ${yl.toLowerCase()} value is ${k} times the ${xl.toLowerCase()} value (check each column), so ${Y} = ${k}${X}.` });
+      sol: `Every ${yl.toLowerCase()} value is ${k} times the ${xl.toLowerCase()} value (check each column), so ${Y} = ${k}${X}.`,
+      steps: ['Look at how each top number turns into the number below it.', `${xs[0]} becomes ${k * xs[0]}. That could be ${TIMES} ${k} or + ${k * xs[0] - xs[0]}, so check another column.`, `${xs[1]} becomes ${k * xs[1]}: ${xs[1]} ${TIMES} ${k} = ${k * xs[1]} works, but ${xs[1]} + ${k * xs[0] - xs[0]} = ${xs[1] + k * xs[0] - xs[0]} does not.`, `${TIMES} ${k} works for every column, so ${Y} = ${k}${X}.`] });
   }
   const k = R.int(2, 12), xs = R.pick([[2, 3, 5, 8], [1, 3, 4, 6], [3, 4, 6, 9]]);
   const m = (xs[0] + k) % xs[0] === 0 ? (xs[0] + k) / xs[0] : null;
   return makeItem({ prompt: 'Which equation matches the table?', fig: tableH([[`${xl} (${X})`, ...xs], [`${yl} (${Y})`, ...xs.map(x => x + k)]]), correct: S(`${Y} = ${X} + ${k}`),
     ds: [m && m > 1 ? SM(`${Y} = ${m}${X}`, 'rule_first_row') : null, SM(`${X} = ${Y} + ${k}`, 'var_swap'), SM(`${Y} = ${k}${X}`, 'rule_multiplicative'), S(`${Y} = ${X} + ${k + 1}`)],
-    sol: `Every ${yl.toLowerCase()} value is ${k} more than the ${xl.toLowerCase()} value (check each column), so ${Y} = ${X} + ${k}.` });
+    sol: `Every ${yl.toLowerCase()} value is ${k} more than the ${xl.toLowerCase()} value (check each column), so ${Y} = ${X} + ${k}.`,
+      steps: ['Look at how each top number turns into the number below it.', `${xs[0]} becomes ${xs[0] + k}: that is + ${k}.${m && m > 1 ? ` (It could also be ${TIMES} ${m}, so check another column.)` : ''}`, `${xs[1]} becomes ${xs[1] + k}: + ${k} again.${m && m > 1 ? ` ${TIMES} ${m} would give ${xs[1] * m}, which doesn\u2019t match.` : ''}`, `+ ${k} works for every column, so ${Y} = ${X} + ${k}.`] });
 };
 
 // ===== Section F: Negative numbers & the coordinate plane =====
@@ -1539,12 +2015,20 @@ G.negnumline = () => {
   // Letters are assigned in random order so the answer isn't always the same letter.
   const letters = R.shuffle(['A', 'B', 'C', 'D']);
   vals.forEach((o, i) => { o.L = letters[i]; });
-  const a = Math.abs(t);
-  const prompt = half ? `Which point is at ${num(t)}?` : R.pick([`Which point is at ${num(t)}?`, `The temperature is ${a} degrees below zero. Which point shows the temperature?`, `A diver is ${a} meters below sea level (sea level is 0). Which point shows the diver\u2019s position?`]);
+  const a = Math.abs(t), ctx = half ? 0 : R.int(0, 2);
+  const prompt = [`Which point is at ${num(t)}?`, `The temperature is ${a} ${nth(a, 'degree', 'degrees')} below zero. Which point shows the temperature?`, `A diver is ${a} ${nth(a, 'meter', 'meters')} below sea level (sea level is 0). Which point shows the diver\u2019s position?`][ctx];
+  const count = Array.from({ length: Math.floor(a) }, (_, i) => num(-(i + 1))).join(', ');
+  const nlSteps = [
+    [`Negative numbers are to the left of 0.`, `Degrees below zero are negative numbers: the temperature is ${num(t)}.`, `Below sea level is negative: the diver is at ${num(t)}.`][ctx],
+    `Only 0, 5 and ${MINUS}5 are labeled, so count from 0. Each mark is 1${half ? ', and the small marks in between are halves' : ''}.`,
+    `Start at 0 and count ${Math.floor(a)} ${nth(Math.floor(a), 'space', 'spaces')} to the left: ${count}${half ? `, then half a space more to ${num(t)}` : ''}.`,
+    `The point there is point ${vals[0].L}.`,
+  ];
   const byLetter = vals.slice().sort((p, q) => p.L < q.L ? -1 : 1);
   return makeItem({ prompt, fig: svgNumLine(-6, 6, vals.map(o => ({ v: o.v, label: o.L })), half, 5), noShuffle: true,
     fixed: byLetter.map(o => ({ h: `Point ${o.L}`, k: o.L, m: o.m, c: o.c })),
-    sol: `${num(t)} is ${a} ${a === 1 ? 'unit' : 'units'} to the left of 0. Count left from 0.` });
+    sol: `${num(t)} is ${a} ${a === 1 ? 'unit' : 'units'} to the left of 0. Count left from 0.`,
+      steps: nlSteps });
 };
 
 G.orderrational = () => {
@@ -1561,7 +2045,8 @@ G.orderrational = () => {
     const show = (a, m) => O(a.map(num).join(', \u2009'), key(a), m);
     return makeItem({ prompt: 'Which list is in order from <b>least to greatest</b>?', correct: show(corr),
       ds: [show(neg, 'neg_compare'), show(abs, 'int_sign_ignore'), show(desc, 'order_reversed')],
-      sol: `On a number line, numbers increase from left to right: ${corr.map(num).join(', ')}. (${num(n1)} is farther left than ${num(n2)}, so it is less.)` });
+      sol: `On a number line, numbers increase from left to right: ${corr.map(num).join(', ')}. (${num(n1)} is farther left than ${num(n2)}, so it is less.)`,
+      steps: ['Picture a number line: numbers get bigger as you go right.', `The negative numbers are smallest. The one farther from 0 is smaller: ${num(n1)} is less than ${num(n2)}, even though ${num(-n1)} is bigger than ${num(-n2)}.`, `Then come ${p1 === 0 ? '0' : num(p1)} and ${num(p2)}.`, `In order: ${corr.map(num).join(', ')}.`] });
   }
 };
 
@@ -1571,19 +2056,22 @@ G.absval = () => {
     let a, b, c, d; do { a = R.int(8, 20); b = R.int(4, a - 1); c = R.int(2, b - 1); d = R.int(1, b - 1); } while (c === d);
     return makeItem({ prompt: 'Which number has the <b>greatest absolute value</b>?',
       fixed: [{ h: num(-a), c: true }, { h: num(b), m: 'abs_vs_value' }, { h: num(-c) }, { h: num(d) }],
-      sol: `Absolute value is distance from 0. ${num(-a)} is ${a} units from 0, farther than any of the others.` });
+      sol: `Absolute value is distance from 0. ${num(-a)} is ${a} units from 0, farther than any of the others.`,
+      steps: ['Absolute value means distance from 0, so ignore the minus signs.', `Distances: |${num(-a)}| = ${a}, |${num(b)}| = ${b}, |${num(-c)}| = ${c}, |${num(d)}| = ${d}.`, `The biggest distance is ${a}, from ${num(-a)}. (${num(b)} is the biggest number, but it is closer to 0.)`] });
   }
   if (t === 2) {
     let a, b; do { a = R.int(3, 15); b = R.int(2, 15); } while (a === b);
     return makeItem({ prompt: `|${MINUS}${a}| + |${b}| = ?`, correct: On(a + b),
       ds: [On(-a + b, 'abs_negative'), On(Math.abs(b - a), 'abs_combine_first'), On(-(a + b), 'abs_negative')], fill: nearFill(a + b, [1, -1, 2]),
-      sol: `|${MINUS}${a}| = ${a} and |${b}| = ${b}, so ${a} + ${b} = ${a + b}.` });
+      sol: `|${MINUS}${a}| = ${a} and |${b}| = ${b}, so ${a} + ${b} = ${a + b}.`,
+      steps: [`|${MINUS}${a}| is the distance from ${MINUS}${a} to 0, which is ${a}. A distance is never negative.`, `|${b}| = ${b}.`, `Add: ${a} + ${b} = ${a + b}.`] });
   }
   const lim = R.pick([20, 25, 30, 40, 50]), big = lim + R.pick([5, 10, 15]), small = lim - R.pick([5, 10]);
   const neg = x => `${MINUS}$${x}`;
   return makeItem({ prompt: `Which account balance shows a debt of <b>more than</b> $${lim}?`,
     fixed: [{ h: neg(big), c: true }, { h: neg(small) }, { h: `$${big + 5}`, m: 'int_sign_context' }, { h: neg(lim), m: 'ineq_boundary' }],
-    sol: `A debt is a negative balance. ${neg(big)} means owing $${big}, which is more than $${lim}.` });
+    sol: `A debt is a negative balance. ${neg(big)} means owing $${big}, which is more than $${lim}.`,
+      steps: ['A debt means you owe money. A balance below zero shows a debt.', `A debt of more than $${lim} is a balance below ${neg(lim)}, like ${neg(big)} (owing $${big}).`, `${neg(lim)} is a debt of exactly $${lim}, not more. ${neg(small)} is a smaller debt. $${big + 5} is money you have, not a debt.`] });
 };
 
 const QN = ['I', 'II', 'III', 'IV'], quad = (x, y) => x > 0 ? (y > 0 ? 0 : 3) : (y > 0 ? 1 : 2);
@@ -1594,21 +2082,24 @@ G.coordplane = () => {
     const P = (a, b, m) => O(pt(a, b), `${a},${b}`, m);
     return makeItem({ prompt: 'What are the coordinates of point <b>P</b>?', fig: svgGrid(x, y), correct: P(x, y),
       ds: [P(y, x, 'coord_swap'), ...R.shuffle([P(x, -y, 'coord_sign'), P(-x, y, 'coord_sign'), P(-x, -y, 'coord_sign')])],
-      sol: `Go ${Math.abs(x)} ${x > 0 ? 'right' : 'left'} along the x-axis, then ${Math.abs(y)} ${y > 0 ? 'up' : 'down'}: ${pt(x, y)}. The x-coordinate always comes first.` });
+      sol: `Go ${Math.abs(x)} ${x > 0 ? 'right' : 'left'} along the x-axis, then ${Math.abs(y)} ${y > 0 ? 'up' : 'down'}: ${pt(x, y)}. The x-coordinate always comes first.`,
+      steps: ['Start at the center, (0, 0).', `Go ${x > 0 ? 'right' : 'left'} along the x-axis until you are under or over P: ${Math.abs(x)} ${nth(Math.abs(x), 'space', 'spaces')}${x < 0 ? ', and left means negative' : ''}. So x = ${num(x)}.`, `Then go ${y > 0 ? 'up' : 'down'} to P: ${Math.abs(y)} ${nth(Math.abs(y), 'space', 'spaces')}${y < 0 ? ', and down means negative' : ''}. So y = ${num(y)}.`, `Write x first, then y: ${pt(x, y)}.`] });
   }
   if (t === 'quad') {
     let x, y; do { x = R.int(-9, 9); y = R.int(-9, 9); } while (!x || !y || (x > 0 && y > 0) || Math.abs(x) === Math.abs(y));
     const q = quad(x, y), sq = quad(y, x);
     return makeItem({ prompt: `In which quadrant is the point ${pt(x, y)}?`, noShuffle: true,
       fixed: QN.map((n, i) => ({ h: `Quadrant ${n}`, k: n, c: i === q, m: i === q ? null : i === sq ? 'coord_swap' : 'coord_sign' })),
-      sol: `x = ${num(x)} is ${x < 0 ? 'negative (left of 0)' : 'positive (right of 0)'} and y = ${num(y)} is ${y < 0 ? 'negative (below 0)' : 'positive (above 0)'}, so it is in Quadrant ${QN[q]}. Quadrants are numbered I to IV counterclockwise, starting at the top right.` });
+      sol: `x = ${num(x)} is ${x < 0 ? 'negative (left of 0)' : 'positive (right of 0)'} and y = ${num(y)} is ${y < 0 ? 'negative (below 0)' : 'positive (above 0)'}, so it is in Quadrant ${QN[q]}. Quadrants are numbered I to IV counterclockwise, starting at the top right.`,
+      steps: [`x = ${num(x)} is ${x < 0 ? 'negative, so the point is left of the y-axis' : 'positive, so the point is right of the y-axis'}.`, `y = ${num(y)} is ${y < 0 ? 'negative, so it is below the x-axis' : 'positive, so it is above the x-axis'}.`, 'The quadrants are numbered counterclockwise, starting at the top right: I is right and up, II is left and up, III is left and down, IV is right and down.', `${x < 0 ? 'Left' : 'Right'} and ${y < 0 ? 'down' : 'up'} is Quadrant ${QN[q]}.`] });
   }
   const horiz = R.chance(0.5), x1 = -R.int(1, 7), x2 = R.int(1, 8), c = R.int(-6, 6), D = x2 - x1;
   const A = horiz ? [x1, c] : [c, x1], B = horiz ? [x2, c] : [c, x2];
   const U = (v, m) => O(`${num(v)} ${v === 1 ? 'unit' : 'units'}`, kn(v), m);
   return makeItem({ prompt: `What is the distance between the points ${pt(...A)} and ${pt(...B)}?`, correct: U(D),
     ds: [U(Math.abs(x2 + x1), 'dist_signs'), U(D + 1, 'dist_count_points'), U(D - 1)], fill: () => { const v = D + R.pick([2, -2, 3]); return v > 0 ? U(v) : null; },
-    sol: `One point is ${-x1} from 0 on one side and the other is ${x2} from 0 on the other side, so the distance is ${-x1} + ${x2} = ${D} units.` });
+    sol: `One point is ${-x1} from 0 on one side and the other is ${x2} from 0 on the other side, so the distance is ${-x1} + ${x2} = ${D} units.`,
+      steps: [`The points have the same ${horiz ? 'y' : 'x'}-coordinate, so they are on a ${horiz ? 'horizontal' : 'vertical'} line. Compare the other coordinates: ${num(x1)} and ${num(x2)}.`, `They are on opposite sides of 0. From ${num(x1)} to 0 is ${-x1} ${nth(-x1, 'unit', 'units')}, and from 0 to ${num(x2)} is ${x2} ${nth(x2, 'unit', 'units')}.`, `Add the two parts: ${-x1} + ${x2} = ${D}.`] });
 };
 
 function factorsOf(n) { const f = []; for (let i = 1; i <= n; i++) if (n % i === 0) f.push(i); return f; }
@@ -1620,7 +2111,8 @@ G.gcflcm = () => {
     const onlyA = factorsOf(a).filter(x => x > 1 && b % x !== 0), one = onlyA.length ? onlyA.reduce((best, x) => Math.abs(x - g) < Math.abs(best - g) ? x : best) : null;
     return makeItem({ prompt: `What is the greatest common factor (GCF) of ${a} and ${b}?`, correct: On(g),
       ds: [L <= 999 ? On(L, 'gcf_lcm_confuse') : null, On(R.pick(divs), 'gcf_not_greatest'), one ? On(one, 'gcf_one_number') : null], fill: () => On(R.pick(divs)),
-      sol: `Factors of ${a}: ${factorsOf(a).join(', ')}. Factors of ${b}: ${factorsOf(b).join(', ')}. The greatest one they share is ${g}.` });
+      sol: `Factors of ${a}: ${factorsOf(a).join(', ')}. Factors of ${b}: ${factorsOf(b).join(', ')}. The greatest one they share is ${g}.`,
+      steps: [`List the factors of ${a} (numbers that divide it evenly): ${factorsOf(a).join(', ')}.`, `List the factors of ${b}: ${factorsOf(b).join(', ')}.`, `Factors in both lists: ${factorsOf(g).join(', ')}.`, `The greatest one is ${g}. (The GCF can\u2019t be bigger than the smaller number.)`] });
   }
   let a, b; const story = R.chance(0.3);
   do { a = story ? R.pick([6, 8, 10, 12]) : R.int(3, 12); b = story ? R.pick([8, 10, 12, 16]) : R.int(4, 15); } while (a === b || lcm(a, b) > 120 || a % b === 0 || b % a === 0 || (lcm(a, b) === a * b && R.chance(0.6)));
@@ -1629,7 +2121,8 @@ G.gcflcm = () => {
   const prompt = story ? `Hot dogs come in packs of ${a}. Buns come in packs of ${b}. What is the smallest number of hot dogs you can buy so that you can buy exactly the same number of buns?` : `What is the least common multiple (LCM) of ${a} and ${b}?`;
   return makeItem({ prompt, correct: On(L),
     ds: [On(a * b, 'lcm_product'), g > 1 ? On(g, 'gcf_lcm_confuse') : null, om.length ? On(R.pick(om), 'lcm_one_number') : null, On(a + b)], fill: () => On(L + R.pick([small, -small, 2])),
-    sol: `Multiples of ${a}: ${[1, 2, 3, 4, 5, 6].map(i => a * i).filter(x => x <= L + a).join(', ')}\u2026 Multiples of ${b}: ${[1, 2, 3, 4, 5, 6].map(i => b * i).filter(x => x <= L + b).join(', ')}\u2026 The first one they share is ${L}.` });
+    sol: `Multiples of ${a}: ${[1, 2, 3, 4, 5, 6].map(i => a * i).filter(x => x <= L + a).join(', ')}\u2026 Multiples of ${b}: ${[1, 2, 3, 4, 5, 6].map(i => b * i).filter(x => x <= L + b).join(', ')}\u2026 The first one they share is ${L}.`,
+      steps: [`List the multiples of ${a} (count by ${a}s): ${Array.from({ length: L / a }, (_, i) => a * (i + 1)).join(', ')}.`, `List the multiples of ${b}: ${Array.from({ length: L / b }, (_, i) => b * (i + 1)).join(', ')}.`, `The first number in both lists is ${L}.`, story ? `So ${L} hot dogs (${L / a} packs) and ${L} buns (${L / b} packs) match up.` : L < a * b ? `(${a} ${TIMES} ${b} = ${a * b} is also a common multiple, but not the least one.)` : null] });
 };
 
 // ===== Section G: Geometry & measurement =====
@@ -1639,14 +2132,17 @@ G.rectarea = () => {
   const t = R.pick(['area', 'area', 'perim', 'missing']), A = l * w, P = 2 * (l + w);
   if (t === 'area') return makeItem({ prompt: 'What is the <b>area</b> of the rectangle?', fig: svgRect(l, w, u), correct: On(A, null, 'sq ' + u),
     ds: [On(P, 'perim_area_confuse', 'sq ' + u), On(l + w, 'area_add_sides', 'sq ' + u), On(A + l, null, 'sq ' + u)], fill: nearFill(A, [w, -w, 2], 'sq ' + u),
-    sol: `Area = length ${TIMES} width = ${l} ${TIMES} ${w} = ${A} square ${uw}.` });
+    sol: `Area = length ${TIMES} width = ${l} ${TIMES} ${w} = ${A} square ${uw}.`,
+      steps: ['Area is the space inside. For a rectangle, area = length \u00d7 width.', `${l} ${TIMES} ${w} = ${A}.`, `Area is in square units: ${A} square ${uw}. (Adding the four sides gives the perimeter, ${P}, which is a different thing.)`] });
   if (t === 'perim') return makeItem({ prompt: 'What is the <b>perimeter</b> of the rectangle?', fig: svgRect(l, w, u), correct: On(P, null, u),
     ds: [On(A, 'perim_area_confuse', u), On(l + w, 'perim_two_sides', u), On(P + 2, null, u)], fill: nearFill(P, [4, -2, -4], u),
-    sol: `Perimeter = add all four sides = ${l} + ${w} + ${l} + ${w} = ${P} ${uw}.` });
+    sol: `Perimeter = add all four sides = ${l} + ${w} + ${l} + ${w} = ${P} ${uw}.`,
+      steps: ['Perimeter is the distance all the way around, so add all four sides.', `A rectangle has two sides of ${l} and two sides of ${w}.`, `${l} + ${w} + ${l} + ${w} = ${P}.`] });
   const pa = A - 2 * l;
   return makeItem({ prompt: `A rectangle has an area of ${A} square ${uw}. Its length is ${l} ${uw}. What is its width?`, correct: On(w, null, u),
     ds: [On(A - l, 'wrong_operation', u), On(A * l, 'wrong_operation', u), pa > 0 && pa % 2 === 0 ? On(pa / 2, 'perim_area_confuse', u) : null, On(w + 1, null, u)], fill: nearFill(w, [2, -1, -2], u),
-    sol: `Area = length ${TIMES} width, so width = ${A} ${DIVIDE} ${l} = ${w} ${uw}.` });
+    sol: `Area = length ${TIMES} width, so width = ${A} ${DIVIDE} ${l} = ${w} ${uw}.`,
+      steps: [`Area = length ${TIMES} width, so ${A} = ${l} ${TIMES} width.`, `${l} times what makes ${A}? Divide: ${A} ${DIVIDE} ${l} = ${w}.`, `Check: ${l} ${TIMES} ${w} = ${A}.`] });
 };
 
 const TRIPLES = [[3, 4, 5], [6, 8, 10], [5, 12, 13], [9, 12, 15], [8, 15, 17], [12, 16, 20], [8, 6, 10], [12, 9, 15], [4, 3, 5]];
@@ -1657,12 +2153,14 @@ G.triarea = () => {
     const A = b * h / 2;
     return makeItem({ prompt: 'What is the area of the triangle?', fig: svgTri(b, h, s, o, u), correct: On(A, null, su),
       ds: [On(b * h, 'area_tri_no_half', su), On((b * s) % 2 === 0 ? b * s / 2 : b * s, 'area_slant', su), On(b + h + s, 'area_add_sides', su)], fill: nearFill(A, [b, -b, h], su),
-      sol: `Area = base ${TIMES} height ${DIVIDE} 2 = ${b} ${TIMES} ${h} ${DIVIDE} 2 = ${A} sq ${u}. The ${s}-${u} side is slanted, so it is not the height.` });
+      sol: `Area = base ${TIMES} height ${DIVIDE} 2 = ${b} ${TIMES} ${h} ${DIVIDE} 2 = ${A} sq ${u}. The ${s}-${u} side is slanted, so it is not the height.`,
+      steps: [`Use the height, the dashed line that meets the base at a square corner: ${h} ${u}. The ${s}-${u} side is slanted, so it is not the height.`, 'A triangle is half of a rectangle with the same base and height.', `Base ${TIMES} height: ${b} ${TIMES} ${h} = ${b * h}.`, `Half of that: ${b * h} ${DIVIDE} 2 = ${A}.`] });
   }
   const b = R.int(Math.max(o + 2, 6), o + 14), A = b * h;
   return makeItem({ prompt: 'What is the area of the parallelogram?', fig: svgPara(b, h, s, o, u), correct: On(A, null, su),
     ds: [On(b * s, 'area_slant', su), isInt(A / 2) ? On(A / 2, 'area_para_half', su) : null, On(2 * (b + s), 'perim_area_confuse', su)], fill: nearFill(A, [b, -b, h], su),
-    sol: `Area = base ${TIMES} height = ${b} ${TIMES} ${h} = ${A} sq ${u}. The ${s}-${u} side is slanted, so it is not the height.` });
+    sol: `Area = base ${TIMES} height = ${b} ${TIMES} ${h} = ${A} sq ${u}. The ${s}-${u} side is slanted, so it is not the height.`,
+      steps: [`Use the height, the dashed line at a square corner to the base: ${h} ${u}. Not the slanted ${s}-${u} side.`, 'Cut the slanted end off and move it to the other side, and a parallelogram becomes a rectangle. So area = base \u00d7 height, with no dividing by 2.', `${b} ${TIMES} ${h} = ${A}.`] });
 };
 
 G.volume = () => {
@@ -1672,14 +2170,16 @@ G.volume = () => {
     const Vv = l * w * h;
     return makeItem({ prompt: 'What is the volume of the box?', fig: svgBox(l, w, h, { l: `${l} ${u}`, w: `${w} ${u}`, h: `${h} ${u}` }), correct: On(Vv, null, cu),
       ds: [On(l + w + h, 'vol_add', cu), On(2 * (l * w + l * h + w * h), 'vol_sa_confuse', cu), On(l * w, 'vol_two_dims', cu)], fill: nearFill(Vv, [l, -w, 10], cu),
-      sol: `Volume = length ${TIMES} width ${TIMES} height = ${l} ${TIMES} ${w} ${TIMES} ${h} = ${Vv} cubic ${u}.` });
+      sol: `Volume = length ${TIMES} width ${TIMES} height = ${l} ${TIMES} ${w} ${TIMES} ${h} = ${Vv} cubic ${u}.`,
+      steps: ['Volume is how many unit cubes fit inside: length \u00d7 width \u00d7 height.', `Bottom layer: ${l} ${TIMES} ${w} = ${l * w} cubes.`, `There are ${h} layers: ${l * w} ${TIMES} ${h} = ${Vv}.`] });
   }
   const k = R.int(1, 5), lf = F(2 * k + 1, 2), w = R.pick([2, 4, 6]), h = R.int(2, 7), W = F(w, 1), H = F(h, 1);
   const Vv = fMul(fMul(lf, W), H), lt = halfTxt(k + 0.5);
   return makeItem({ prompt: 'What is the volume of the box?', fig: svgBox(k + 0.5, w, h, { l: `${lt} ${u}`, w: `${w} ${u}`, h: `${h} ${u}` }), correct: Of(Vv, null, cu),
     ds: [Of(fAdd(fAdd(lf, W), H), 'vol_add', cu), Of(fMul(F(2, 1), fAdd(fAdd(fMul(lf, W), fMul(lf, H)), fMul(W, H))), 'vol_sa_confuse', cu), Of(fMul(lf, W), 'vol_two_dims', cu)],
     fill: () => Of(fAdd(Vv, F(R.pick([w, -w, h]), 1)), null, cu),
-    sol: `Volume = ${lt} ${TIMES} ${w} ${TIMES} ${h} = ${fH(Vv)} cubic ${u}.` });
+    sol: `Volume = ${lt} ${TIMES} ${w} ${TIMES} ${h} = ${fH(Vv)} cubic ${u}.`,
+      steps: ['Volume = length \u00d7 width \u00d7 height.', `Multiply the whole numbers first: ${w} ${TIMES} ${h} = ${w * h}.`, `Now ${w * h} ${TIMES} ${lt}: ${w * h} ${TIMES} ${k} = ${w * h * k}, and half of ${w * h} is ${w * h / 2}.`, `Add them: ${w * h * k} + ${w * h / 2} = ${fH(Vv)}.`] });
 };
 
 G.surfacearea = () => {
@@ -1688,13 +2188,15 @@ G.surfacearea = () => {
     const s = R.pick([2, 3, 5, 7, 8, 9]), SA = 6 * s * s;
     return makeItem({ prompt: `Each edge of a cube is ${s} ${u} long. What is the surface area of the cube?`, fig: svgBox(s, s, s, { l: `${s} ${u}`, w: `${s} ${u}`, h: `${s} ${u}` }), correct: On(SA, null, su),
       ds: [On(s * s * s, 'vol_sa_confuse', su), On(4 * s * s, 'sa_missing_faces', su), On(6 * s, 'sa_forgot_square', su)], fill: nearFill(SA, [s * s, -s * s, 2 * s], su),
-      sol: `A cube has 6 square faces, each ${s} ${TIMES} ${s} = ${s * s} sq ${u}. 6 ${TIMES} ${s * s} = ${SA} sq ${u}.` });
+      sol: `A cube has 6 square faces, each ${s} ${TIMES} ${s} = ${s * s} sq ${u}. 6 ${TIMES} ${s * s} = ${SA} sq ${u}.`,
+      steps: ['A cube has 6 faces, and they are all the same square.', `One face: ${s} ${TIMES} ${s} = ${s * s}.`, `All 6 faces: 6 ${TIMES} ${s * s} = ${SA}. (${s} ${TIMES} ${s} ${TIMES} ${s} = ${s * s * s} would be the volume.)`] });
   }
   let l, w, h; do { l = R.int(3, 10); w = R.int(2, 8); h = R.int(2, 9); } while (l === w || w === h || l === h);
   const SA = 2 * (l * w + l * h + w * h);
   return makeItem({ prompt: 'What is the surface area of the box?', fig: svgBox(l, w, h, { l: `${l} ${u}`, w: `${w} ${u}`, h: `${h} ${u}` }), correct: On(SA, null, su),
     ds: [On(l * w * h, 'vol_sa_confuse', su), On(l * w + l * h + w * h, 'sa_three_faces', su), On(SA - 2 * l * w, 'sa_missing_faces', su)], fill: nearFill(SA, [l, -w, 2 * h], su),
-    sol: `Six faces in three matching pairs: 2 ${TIMES} (${l}${TIMES}${w}) + 2 ${TIMES} (${l}${TIMES}${h}) + 2 ${TIMES} (${w}${TIMES}${h}) = ${2 * l * w} + ${2 * l * h} + ${2 * w * h} = ${SA} sq ${u}.` });
+    sol: `Six faces in three matching pairs: 2 ${TIMES} (${l}${TIMES}${w}) + 2 ${TIMES} (${l}${TIMES}${h}) + 2 ${TIMES} (${w}${TIMES}${h}) = ${2 * l * w} + ${2 * l * h} + ${2 * w * h} = ${SA} sq ${u}.`,
+      steps: ['A box has 6 faces in 3 matching pairs: top and bottom, front and back, left and right.', `Top and bottom: ${l} ${TIMES} ${w} = ${l * w} each, so ${2 * l * w}.`, `Front and back: ${l} ${TIMES} ${h} = ${l * h} each, so ${2 * l * h}.`, `Left and right: ${w} ${TIMES} ${h} = ${w * h} each, so ${2 * w * h}.`, `Add all six: ${2 * l * w} + ${2 * l * h} + ${2 * w * h} = ${SA}.`] });
 };
 
 const CUST = [['feet', 'foot', 'inches', 12], ['yards', 'yard', 'feet', 3], ['gallons', 'gallon', 'quarts', 4], ['pounds', 'pound', 'ounces', 16]];
@@ -1706,31 +2208,36 @@ G.convert = () => {
     return makeItem({ prompt: `How many ${sm} are in ${halfTxt(v)} ${big}? (1 ${bs} = ${f} ${sm})`, correct: Of(fMul(vf, F(f, 1)), null, sm),
       ds: [Of(fDiv(vf, F(f, 1)), 'conv_wrong_way', sm), Of(fAdd(vf, F(f, 1)), 'conv_add_sub', sm), Of(fMul(vf, F(10, 1)), 'conv_base_ten', sm)],
       fill: () => Of(fAdd(fMul(vf, F(f, 1)), F(R.pick([f, -f, 2]), 1)), null, sm),
-      sol: `Each ${bs} is ${f} ${sm}, so multiply: ${halfTxt(v)} ${TIMES} ${f} = ${num(v * f)} ${sm}.` });
+      sol: `Each ${bs} is ${f} ${sm}, so multiply: ${halfTxt(v)} ${TIMES} ${f} = ${num(v * f)} ${sm}.`,
+      steps: [`1 ${bs} = ${f} ${sm}. Smaller units means more of them, so multiply.`, half ? `${halfTxt(v)} ${TIMES} ${f}: ${Math.floor(v)} ${TIMES} ${f} = ${Math.floor(v) * f}, and half of ${f} is ${f / 2}. Add: ${Math.floor(v) * f} + ${f / 2} = ${v * f}.` : `${v} ${TIMES} ${f} = ${v * f}.`] });
   }
   if (t === 'up') {
     const [big, bs, sm, f] = R.pick(CUST), q = R.int(2, 9), half = f % 2 === 0 && R.chance(0.5), n = f * q + (half ? f / 2 : 0);
     return makeItem({ prompt: `How many ${big} are in ${n} ${sm}? (1 ${bs} = ${f} ${sm})`, correct: Of(F(n, f), null, big),
       ds: [Of(F(n * f, 1), 'conv_wrong_way', big), Of(F(n - f, 1), 'conv_add_sub', big), O(num(n / 10) + ' ' + big, 'd' + n / 10, 'conv_base_ten')],
       fill: () => Of(fAdd(F(n, f), F(R.pick([1, -1, 2]), 1)), null, big),
-      sol: `Every ${f} ${sm} make 1 ${bs}, so divide: ${n} ${DIVIDE} ${f} = ${fH(F(n, f))} ${big}.` });
+      sol: `Every ${f} ${sm} make 1 ${bs}, so divide: ${n} ${DIVIDE} ${f} = ${fH(F(n, f))} ${big}.`,
+      steps: [`${f} ${sm} make 1 ${bs}. Bigger units means fewer of them, so divide.`, `${n} ${DIVIDE} ${f} = ${Math.floor(n / f)}${n % f ? ` R ${n % f}` : ''}.`, n % f ? `The ${n % f} left over is ${fr(n % f, f)} = ${fH(F(n % f, f))} of a ${bs}, so the answer is ${fH(F(n, f))}.` : null] });
   }
   if (t === 'mdown') {
     const [big, bs, sm, f] = R.pick(METRIC), v = R.int(2, 9) + R.pick([0, 0.5, 0.25, 0.75]), c = round6(v * f);
     return makeItem({ prompt: `How many ${sm} are in ${num(v)} ${big}? (1 ${bs} = ${num(f)} ${sm})`, correct: On(c, null, sm),
       ds: [On(c / 10, 'conv_metric_places', sm), On(c * 10, 'conv_metric_places', sm), On(v / f, 'conv_wrong_way', sm)], fill: nearFill(c, [f, -f], sm),
-      sol: `Multiply by ${num(f)}: ${num(v)} ${TIMES} ${num(f)} = ${num(c)} ${sm}.` });
+      sol: `Multiply by ${num(f)}: ${num(v)} ${TIMES} ${num(f)} = ${num(c)} ${sm}.`,
+      steps: [`1 ${bs} = ${num(f)} ${sm}, so multiply by ${num(f)}.`, `Multiplying by ${num(f)} moves the decimal point ${String(f).length - 1} places to the right: ${num(v)} becomes ${num(c)}.`] });
   }
   if (t === 'mup') {
     const [big, bs, sm, f] = R.pick(METRIC), n = R.int(12, 95) * (f / 100) * 10, c = round6(n / f);
     return makeItem({ prompt: `How many ${big} are in ${num(n)} ${sm}? (1 ${bs} = ${num(f)} ${sm})`, correct: On(c, null, big),
       ds: [On(c * 10, 'conv_metric_places', big), On(c / 10, 'conv_metric_places', big), On(n * f, 'conv_wrong_way', big)], fill: nearFill(c, [1, -1, 0.5], big, 0.01),
-      sol: `Divide by ${num(f)}: ${num(n)} ${DIVIDE} ${num(f)} = ${num(c)} ${big}.` });
+      sol: `Divide by ${num(f)}: ${num(n)} ${DIVIDE} ${num(f)} = ${num(c)} ${big}.`,
+      steps: [`${num(f)} ${sm} make 1 ${bs}, so divide by ${num(f)}.`, `Dividing by ${num(f)} moves the decimal point ${String(f).length - 1} places to the left: ${num(n)} becomes ${num(c)}.`] });
   }
   const m = R.pick([90, 150, 210, 270, 45, 105]), c = m / 60, hr = Math.floor(m / 60), mn = m % 60;
   return makeItem({ prompt: `How many hours is ${m} minutes? (1 hour = 60 minutes)`, correct: On(c, null, 'hours'),
     ds: [O(`${hr}.${mn} hours`, 'td', 'time_decimal'), On(m * 60, 'conv_wrong_way', 'hours'), On(m - 60 > 0 ? m - 60 : m + 60, 'conv_add_sub', 'hours')], fill: nearFill(c, [0.5, 1, -0.25], 'hours', 0.25),
-    sol: `${m} ${DIVIDE} 60 = ${num(c)} hours (${hr ? hr + ' hour' + (hr > 1 ? 's' : '') + ' and ' : ''}${mn} minutes, and ${mn} minutes is ${fH(F(mn, 60))} of an hour).` });
+    sol: `${m} ${DIVIDE} 60 = ${num(c)} hours (${hr ? hr + ' hour' + (hr > 1 ? 's' : '') + ' and ' : ''}${mn} minutes, and ${mn} minutes is ${fH(F(mn, 60))} of an hour).`,
+      steps: ['60 minutes make 1 hour, so divide by 60.', hr ? `${m} minutes = ${hr} ${nth(hr, 'hour', 'hours')} (${hr * 60} minutes) and ${mn} minutes more.` : null, `${mn} minutes is ${fr(mn, 60)} of an hour, which is ${fH(F(mn, 60))} = ${num(mn / 60)}.`, `So ${m} minutes = ${num(c)} hours. (${hr}.${mn} would be wrong: minutes aren\u2019t tenths and hundredths.)`] });
 };
 
 // ===== Section H: Statistics & data =====
@@ -1746,7 +2253,8 @@ const STATQ = [
 G.statq = () => {
   const s = R.pick(STATQ);
   return makeItem({ prompt: 'Which is a <b>statistical question</b>?', fixed: [{ h: s[0], c: true }, ...s.slice(1).map(h => ({ h, m: 'stat_q_single' }))],
-    sol: `\u201c${s[0]}\u201d expects many different answers that vary, so it is statistical. The others each have one answer.` });
+    sol: `\u201c${s[0]}\u201d expects many different answers that vary, so it is statistical. The others each have one answer.`,
+      steps: ['A statistical question is one you answer by collecting many answers that vary.', `\u201c${s[0]}\u201d asks about many people or things, so the answers will be different.`, 'Each of the other questions has just one answer.'] });
 };
 
 G.dotplot = () => {
@@ -1757,7 +2265,8 @@ G.dotplot = () => {
     const k = R.int(2, 4), c = counts.slice(k + 1).reduce((a, b) => a + b, 0), ge = c + counts[k];
     return makeItem({ prompt: `The dot plot shows data for some ${ctx[1]}. How many ${ctx[1]} ${ctx[2]} <b>more than</b> ${k} ${ctx[3]}?`, fig, correct: On(c),
       ds: [On(ge, 'data_boundary'), On(tot - c, 'data_complement'), On(counts[k + 1], null)], fill: nearFill(c, [1, -1, 2], null, 0),
-      sol: `Count the dots above ${k + 1} and higher (not ${k} itself): ${counts.slice(k + 1).join(' + ')} = ${c}.` });
+      sol: `Count the dots above ${k + 1} and higher (not ${k} itself): ${counts.slice(k + 1).join(' + ')} = ${c}.`,
+      steps: [`Each dot is one ${ctx[1].slice(0, -1)}.`, `\u201cMore than ${k}\u201d means ${k + 1} or more, so don\u2019t count the dots above ${k}.`, `Count the dots above ${k + 1} through 6: ${counts.slice(k + 1).join(' + ')} = ${c}.`] });
   }
   if (t === 2) {
     const mx = Math.max(...counts);
@@ -1765,12 +2274,14 @@ G.dotplot = () => {
     const mode = counts.indexOf(mx);
     return makeItem({ prompt: `What is the <b>mode</b> of the data in the dot plot?`, fig, correct: On(mode),
       ds: [On(mx, 'mode_count'), On(6 - mode === mode ? (mode + 1) % 7 : 6 - mode), On(3)], fill: () => On(R.int(0, 6)),
-      sol: `The mode is the value with the most dots: ${mode} (it has ${mx} dots).` });
+      sol: `The mode is the value with the most dots: ${mode} (it has ${mx} dots).`,
+      steps: ['The mode is the value that shows up most often: the tallest stack of dots.', `The tallest stack is above ${mode}, with ${mx} dots.`, `So the mode is ${mode}. (${mx} is how many times it shows up, not the mode itself.)`] });
   }
   const sum = counts.reduce((a, c, i) => a + c * i, 0);
   return makeItem({ prompt: `How many ${ctx[1]} are shown in the dot plot?`, fig, correct: On(tot),
     ds: [On(counts.filter(c => c > 0).length, 'data_count_columns'), On(sum, 'data_total_vs_count'), On(tot + 1)], fill: nearFill(tot, [2, -1, -2]),
-    sol: `Each dot is one ${ctx[1].slice(0, -1)}. Count all the dots: ${tot}.` });
+    sol: `Each dot is one ${ctx[1].slice(0, -1)}. Count all the dots: ${tot}.`,
+      steps: [`Each dot stands for one ${ctx[1].slice(0, -1)}, so count every dot, not the columns.`, `Column by column: ${counts.join(' + ')} = ${tot}.`] });
 };
 
 G.mean = () => {
@@ -1784,7 +2295,8 @@ G.mean = () => {
     if (new Set([mean, med, rng, S].map(kn)).size < 4) continue;
     return makeItem({ prompt: `What is the <b>mean</b> of these numbers? &nbsp;${vals.join(', \u2009')}`, correct: On(mean),
       ds: [On(med, 'mean_median_confuse'), On(S, 'mean_no_divide'), On(rng, 'center_spread_confuse')], fill: nearFill(mean, [1, -1, 2]),
-      sol: `Add them: ${vals.join(' + ')} = ${S}. Divide by how many there are (${n}): ${S} ${DIVIDE} ${n} = ${mean}.` });
+      sol: `Add them: ${vals.join(' + ')} = ${S}. Divide by how many there are (${n}): ${S} ${DIVIDE} ${n} = ${mean}.`,
+      steps: [`Add all the numbers: ${vals.join(' + ')} = ${S}.`, `Count how many numbers there are: ${n}.`, `Divide the total by the count: ${S} ${DIVIDE} ${n} = ${mean}.`] });
   }
 };
 
@@ -1800,7 +2312,8 @@ G.median = () => {
     return makeItem({ prompt: `What is the <b>median</b> of these numbers? &nbsp;${vals.join(', \u2009')}`, correct: On(med),
       ds: [On(unsorted, 'median_unsorted'), even ? On(R.pick([sorted[2], sorted[3]]), 'median_even') : null, isInt(mean) ? On(mean, 'mean_median_confuse') : null, On(mid, 'median_midrange')],
       fill: nearFill(med, [1, -1, 2, -2]),
-      sol: `Put them in order: ${sorted.join(', ')}. ${even ? `The two middle numbers are ${sorted[2]} and ${sorted[3]}; halfway between them is ${num(med)}.` : `The middle number is ${med}.`}` });
+      sol: `Put them in order: ${sorted.join(', ')}. ${even ? `The two middle numbers are ${sorted[2]} and ${sorted[3]}; halfway between them is ${num(med)}.` : `The middle number is ${med}.`}`,
+      steps: [`Put the numbers in order from least to greatest: ${sorted.join(', ')}.`, even ? `There are ${n} numbers, so there are two middle numbers: ${sorted[2]} and ${sorted[3]}.` : `There are ${n} numbers. The middle one is the 4th: ${sorted[3]}.`, even ? `The median is halfway between them: (${sorted[2]} + ${sorted[3]}) ${DIVIDE} 2 = ${num(med)}.` : null] });
   }
 };
 
@@ -1814,7 +2327,8 @@ G.range_iqr = () => {
       if (new Set([r, mx, fl].map(kn)).size < 3) continue;
       return makeItem({ prompt: `What is the <b>range</b> of these numbers? &nbsp;${vals.join(', \u2009')}`, correct: On(r),
         ds: [On(mx, 'range_max'), On(fl, 'range_first_last'), On(mx + mn)], fill: nearFill(r, [1, -1, 2]),
-        sol: `Range = largest ${MINUS} smallest = ${mx} ${MINUS} ${mn} = ${r}.` });
+        sol: `Range = largest ${MINUS} smallest = ${mx} ${MINUS} ${mn} = ${r}.`,
+      steps: [`Find the largest number: ${mx}. Find the smallest: ${mn}. (Not the first and last numbers in the list.)`, `Range = largest ${MINUS} smallest = ${mx} ${MINUS} ${mn} = ${r}.`] });
     }
   }
   for (;;) {
@@ -1824,7 +2338,8 @@ G.range_iqr = () => {
     if (new Set([iqr, rng, q3, v[6] - v[1]].map(kn)).size < 4) continue;
     return makeItem({ prompt: `These numbers are in order: &nbsp;${v.join(', \u2009')}. What is the <b>interquartile range (IQR)</b>?`, correct: On(iqr),
       ds: [On(rng, 'iqr_range_confuse'), On(q3, 'iqr_q3'), On(v[6] - v[1], 'iqr_wrong_values')], fill: nearFill(iqr, [1, -1, 2]),
-      sol: `Lower half ${v.slice(0, 4).join(', ')} has median ${q1} (Q1). Upper half ${v.slice(4).join(', ')} has median ${q3} (Q3). IQR = ${q3} ${MINUS} ${q1} = ${iqr}.` });
+      sol: `Lower half ${v.slice(0, 4).join(', ')} has median ${q1} (Q1). Upper half ${v.slice(4).join(', ')} has median ${q3} (Q3). IQR = ${q3} ${MINUS} ${q1} = ${iqr}.`,
+      steps: [`The numbers are in order. Split them in half: ${v.slice(0, 4).join(', ')} and ${v.slice(4).join(', ')}.`, `Q1 is the middle of the lower half: halfway between ${v[1]} and ${v[2]} is ${q1}.`, `Q3 is the middle of the upper half: halfway between ${v[5]} and ${v[6]} is ${q3}.`, `IQR = Q3 ${MINUS} Q1 = ${q3} ${MINUS} ${q1} = ${iqr}.`] });
   }
 };
 
@@ -1928,11 +2443,11 @@ let selected = -1, shownAt = 0, lockUntil = 0;
 const app = document.getElementById('app');
 const Sync = { mode: 'checking', reason: '', col: null, dirty: new Set(), busy: false, unsub: null, timer: 0, localOK: true };
 
-function freshState() { return { v: 1, name: '', cur: null, hist: [], updatedAt: 0 }; }
+function freshState() { return { v: 1, name: '', cur: null, hist: [], prac: {}, updatedAt: 0 }; }
 function loadLocal() {
   try {
     const raw = localStorage.getItem(STORE_KEY);
-    if (raw) { const s = JSON.parse(raw); if (s && s.v === 1 && Array.isArray(s.hist)) return s; }
+    if (raw) { const s = JSON.parse(raw); if (s && s.v === 1 && Array.isArray(s.hist)) { if (!s.prac) s.prac = {}; return s; } }
   } catch (e) { /* storage blocked: start fresh */ }
   return freshState();
 }
@@ -1956,7 +2471,7 @@ function saveAll() {
   if (Sync.col) { DOC_KEYS().forEach(k => Sync.dirty.add(k)); flush(); }
 }
 function docBody(key) {
-  if (key === 'meta') return { v: 1, name: DB.name, hist: DB.hist, started: DB.cur ? DB.cur.started : null, updatedAt: DB.updatedAt };
+  if (key === 'meta') return { v: 1, name: DB.name, hist: DB.hist, prac: DB.prac, started: DB.cur ? DB.cur.started : null, updatedAt: DB.updatedAt };
   const d = DB.cur && DB.cur.secs[key.slice(4)];
   return d ? { att: DB.cur.started, data: d, updatedAt: DB.updatedAt } : null;
 }
@@ -1993,7 +2508,7 @@ function fromDocs(docs) {
   docs.forEach(d => { if (d.exists) by[d.id] = d.data(); });
   const m = by.meta;
   if (!m || m.v !== 1) return null;
-  const s = { v: 1, name: m.name || '', hist: Array.isArray(m.hist) ? clone(m.hist) : [], updatedAt: m.updatedAt || 0, cur: null };
+  const s = { v: 1, name: m.name || '', hist: Array.isArray(m.hist) ? clone(m.hist) : [], prac: m.prac ? clone(m.prac) : {}, updatedAt: m.updatedAt || 0, cur: null };
   if (m.started) {
     s.cur = { started: m.started, secs: {} };
     SECTIONS.forEach(sec => {
@@ -2003,13 +2518,13 @@ function fromDocs(docs) {
   }
   return s;
 }
-const hasProgress = s => !!(s.name || s.hist.length || (s.cur && Object.keys(s.cur.secs).length));
-const busyView = () => view.name === 'test' || view.name === 'intro';
+const hasProgress = s => !!(s.name || s.hist.length || Object.keys(s.prac || {}).length || (s.cur && Object.keys(s.cur.secs).length));
+const busyView = () => view.name === 'test' || view.name === 'intro' || view.name === 'practice';
 // Keep whichever copy is newer: the one saved in the account, or this browser's.
 function adopt(remote, initial) {
   const mine = DB.updatedAt || 0, theirs = remote ? remote.updatedAt || 0 : 0;
   if (remote && theirs > mine) {
-    if (busyView()) return; // mid-test on this device: this copy is saved again on the next answer
+    if (busyView() && view.name !== 'practice') return; // mid-test on this device: this copy is saved again on the next answer
     DB = remote; saveLocal();
     if (!initial) rerender();
   } else if (initial && hasProgress(DB) && mine > theirs) {
@@ -2156,7 +2671,7 @@ function homeView() {
       <div class="sec-go">${action}</div>
     </li>`;
   }).join('');
-  return `${topBar(`<button class="btn small${all ? ' primary' : ''}" data-act="report">${all ? 'See the report' : 'Parent report'}</button>`)}
+  return `${topBar(`<div class="top-actions"><button class="btn small" data-act="practice-home">Practice</button><button class="btn small${all ? ' primary' : ''}" data-act="report">${all ? 'See the report' : 'Parent report'}</button></div>`)}
   <section class="hero">
     <h1>Find the math skills to work on first.</h1>
     <p class="lede">A check-up of grade 3 to 6 math in eight short sections. The questions are new every time, so you can retake it later to see progress.</p>
@@ -2232,6 +2747,7 @@ function doneView(id) {
       <p class="lede">That’s every section. Thanks for working so hard.</p>
       <p>Hand the device back to your parent to see the report.</p>
       <div class="row-btns"><button class="btn primary big" data-act="report">See the report</button></div>
+      ${practiceCta(priorities(allResults()).slice(0, 3), 'Ready to practice? Start with these.')}
     </div></div>`;
   return `<div class="narrow"><div class="sheet center done-sheet">
       ${pencil(100)}
@@ -2242,6 +2758,7 @@ function doneView(id) {
         <button class="btn big" data-act="home">Back to sections</button>
       </div>
       <p class="fine">${doneCount()} of ${SECTIONS.length} sections finished.</p>
+      ${practiceCta(priorities(allResults()).filter(x => x.s.sec === id).slice(0, 3), 'Want to practice the tricky ones from this section?')}
     </div></div>`;
 }
 
@@ -2276,7 +2793,8 @@ function priCard(x) {
     ${mis.length ? `<div class="pri-mis"><p class="lead-in">Mistakes seen</p><ul>${mis.map(m => `<li>${MIS[m]}</li>`).join('')}</ul></div>` : ''}
     <p><span class="lead-in">Why it matters.</span> Needed for ${s.needs}.</p>
     <p><span class="lead-in">How to practice.</span> ${s.tip}</p>
-    <p class="std">Common Core standard ${s.std}</p>
+    ${pracNote(s.id) ? `<p><span class="lead-in">Practice so far.</span> ${pracNote(s.id)}</p>` : ''}
+    <div class="pri-foot"><p class="std">Common Core standard ${s.std}</p><button class="btn small no-print" data-act="practice" data-skill="${s.id}" data-back="report">Practice this skill</button></div>
   </li>`;
 }
 function compareText(R, prev) {
@@ -2324,7 +2842,7 @@ function reviewItem(it) {
     <div class="rv-q">${it.p}</div>
     ${it.f ? `<div class="figure sm">${it.f}</div>` : ''}
     <ol class="rv-opts">${opts}</ol>
-    <p class="rv-sol"><span class="lead-in">Explanation.</span> ${it.sol}</p>
+    ${it.st ? `<div class="rv-sol"><p class="lead-in">How to solve it</p>${it.w || ''}<ol class="steps">${it.st.map(x => `<li>${x}</li>`).join('')}</ol></div>` : `<p class="rv-sol"><span class="lead-in">Explanation.</span> ${it.sol}</p>`}
   </li>`;
 }
 function rightItem(it) {
@@ -2364,8 +2882,10 @@ function reportView() {
       <h2>Start here</h2>
       ${top.length ? `<p>Work on these in order. About 15 to 20 minutes a day on one skill until it feels easy, then move to the next.</p><ol class="pris">${top.map(priCard).join('')}</ol>`
         : '<p>No gaps found in the skills tested so far.</p>'}
-      ${more.length ? `<h3 class="sub">After that</h3><ul class="more">${more.map(x => `<li><span class="nm">${x.s.name}</span><span class="muted">Grade ${x.s.g}. ${x.r.c} of ${x.r.t} right${slowNote(x.r)}.</span>${chip(x.r.st, true)}</li>`).join('')}</ul>` : ''}
+      ${more.length ? `<h3 class="sub">After that</h3><ul class="more">${more.map(x => `<li><span class="nm">${x.s.name}</span><span class="muted">Grade ${x.s.g}. ${x.r.c} of ${x.r.t} right${slowNote(x.r)}.</span>${chip(x.r.st, true)}<button class="link no-print" data-act="practice" data-skill="${x.s.id}" data-back="report">Practice</button></li>`).join('')}</ul>` : ''}
     </section>
+
+    ${practiceSection()}
 
     ${pats.length ? `<section class="rep-sec">
       <h2>Mistakes made more than once</h2>
@@ -2400,6 +2920,131 @@ function reportView() {
   </article>`;
 }
 
+// ---------- practice ----------
+// Unlimited questions for one skill, each followed by its worked solution. Five right in a row masters the skill.
+const MASTER = 5;
+let P = null;
+const pracStat = id => Object.assign({ n: 0, c: 0, streak: 0, best: 0, mastered: 0, last: 0 }, DB.prac[id]);
+function pracNote(id) {
+  const st = DB.prac[id];
+  if (!st || !st.n) return '';
+  return st.mastered ? `mastered (${MASTER} in a row) on ${fmtDate(st.mastered)}, ${st.c} of ${st.n} right overall` : `${st.c} of ${st.n} right, best streak ${st.best}`;
+}
+const practiced = () => Object.keys(DB.prac).filter(id => SKILL[id] && DB.prac[id].n).sort((a, b) => (DB.prac[b].last || 0) - (DB.prac[a].last || 0));
+function practiceSection() {
+  const ids = practiced();
+  if (!ids.length) return '';
+  const short = ts => new Date(ts).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+  return `<section class="rep-sec">
+      <h2>Practice</h2>
+      <p>Questions answered in practice mode, most recent first. A skill counts as mastered after ${MASTER} right in a row without help.</p>
+      <table class="skills prac-table"><thead><tr><th>Skill</th><th>Right</th><th>Best streak</th><th>Last practiced</th></tr></thead><tbody>${ids.map(id => {
+        const s = SKILL[id], st = DB.prac[id];
+        return `<tr><td class="sk-name">${s.name}<span>${st.mastered ? `<b class="mastered-note">Mastered ${fmtDate(st.mastered)}</b>` : `Grade ${s.g}`}</span></td><td class="sk-res">${st.c} of ${st.n}</td><td class="sk-res">${st.best}</td><td class="sk-res">${short(st.last)}</td></tr>`;
+      }).join('')}</tbody></table>
+    </section>`;
+}
+function practiceCta(list, lead) {
+  if (!list.length) return '';
+  return `<div class="prac-cta"><p>${lead}</p><div class="row-btns">${list.map(x => `<button class="btn" data-act="practice" data-skill="${x.s.id}" data-back="home">${x.s.name}</button>`).join('')}</div></div>`;
+}
+// "Forgets to carry..." becomes "usually forgets to carry...", and "Is off by one..." becomes "is usually off by one...".
+function usually(text) {
+  const t = text.charAt(0).toLowerCase() + text.slice(1);
+  return t.startsWith('is ') ? 'is usually ' + t.slice(3) : 'usually ' + t;
+}
+function startPractice(id, back) {
+  P = { skill: id, back: back || 'home', it: null, recent: [], chosen: -1, checked: false, shown: false, msg: '', n: 0, c: 0, mastered: false };
+  nextPractice();
+  go('practice');
+}
+function nextPractice() {
+  P.it = makeQ(P.skill, P.recent);
+  P.recent.push(P.it); if (P.recent.length > 6) P.recent.shift();
+  P.chosen = -1; P.checked = false; P.shown = false; P.msg = ''; P.mastered = false;
+  selected = -1;
+}
+function checkPractice(showOnly) {
+  if (!P || P.checked || (!showOnly && P.chosen < 0) || Date.now() < lockUntil) return;
+  P.checked = true;
+  if (showOnly) {
+    P.shown = true; P.msg = 'Here’s how to solve it. Try the next one on your own.';
+    const st = DB.prac[P.skill]; if (st && st.streak) { st.streak = 0; save(); }
+  }
+  else {
+    const ok = P.chosen === P.it.ans, st = DB.prac[P.skill] = pracStat(P.skill);
+    st.n++; st.last = Date.now(); P.n++;
+    if (ok) {
+      st.c++; st.streak++; st.best = Math.max(st.best, st.streak); P.c++;
+      if (st.streak >= MASTER && !st.mastered) { st.mastered = Date.now(); P.mastered = true; }
+      P.msg = R.pick(['Right!', 'Yes, that’s it.', 'Correct!', 'Nice work.']);
+    } else { st.streak = 0; P.msg = `Not quite. The answer is ${LETTERS[P.it.ans]}.`; }
+    save();
+  }
+  render();
+  const fb = app.querySelector('.feedback');
+  if (fb) { fb.focus({ preventScroll: true }); fb.scrollIntoView({ block: 'nearest' }); }
+}
+function practiceView() {
+  const s = SKILL[P.skill], it = P.it, st = pracStat(P.skill);
+  const longOpts = it.o.some(o => textOf(o.h).length > 24), longPrompt = textOf(it.p).length > 130;
+  const dots = Array.from({ length: MASTER }, (_, i) => `<span class="sdot${i < Math.min(st.streak, MASTER) ? ' on' : ''}"></span>`).join('');
+  const goal = st.streak >= MASTER ? `${st.streak} in a row. Mastered!` : st.mastered ? `${st.streak} in a row. You’ve mastered this one, so this is extra practice.` : `${st.streak} in a row. Get ${MASTER} in a row to master it.`;
+  const opts = it.o.map((o, i) => {
+    let cls = 'opt';
+    if (P.checked) { if (i === it.ans) cls += ' right'; else if (i === P.chosen) cls += ' wrong'; } else if (i === P.chosen) cls += ' sel';
+    return `<button class="${cls}" data-act="pick" data-i="${i}" aria-pressed="${i === P.chosen}"${P.checked ? ' disabled' : ''}><span class="key">${LETTERS[i]}</span><span class="val">${o.h}</span></button>`;
+  }).join('');
+  const ok = P.checked && !P.shown && P.chosen === it.ans, mixup = P.checked && !ok && !P.shown && P.chosen >= 0 ? it.o[P.chosen].m : null;
+  const steps = it.st || [it.sol];
+  return `<div class="test practice">
+    <header class="test-top"><span class="sec-name">Practice</span><button class="link" data-act="prac-back">Done practicing</button></header>
+    <h1 class="prac-title">${s.name}</h1>
+    <div class="streak"><span class="sdots" aria-hidden="true">${dots}</span><span>${goal}</span>${P.n ? `<span class="muted">This time: ${P.c} of ${P.n} right</span>` : ''}</div>
+    <section class="qcard${it.big ? ' big' : ''}${longPrompt ? ' long' : ''}">
+      <h2 class="prompt" tabindex="-1">${it.p}</h2>
+      ${it.f ? `<div class="figure">${it.f}</div>` : ''}
+    </section>
+    <div class="opts${longOpts ? ' one-col' : ''}" role="group" aria-label="Answer choices">${opts}</div>
+    ${P.checked ? `
+    <div class="feedback ${P.shown ? 'shown' : ok ? 'ok' : 'no'}" tabindex="-1" role="status">
+      <p class="fb-head">${P.msg}</p>
+      ${mixup ? `<p><b>Common mix-up.</b> Someone who picks this answer ${usually(MIS[mixup])}</p>` : ''}
+      ${P.mastered ? `<p class="fb-master">That’s ${MASTER} in a row. You’ve mastered this skill!</p>` : ''}
+    </div>
+    <section class="worked">
+      <h2>How to solve it</h2>
+      ${it.w || ''}
+      <ol class="steps">${steps.map(x => `<li>${x}</li>`).join('')}</ol>
+    </section>
+    <div class="test-actions end"><button class="btn primary" data-act="prac-next">Next question</button></div>`
+    : `<div class="test-actions"><button class="btn ghost" data-act="prac-show">Show me how</button><button class="btn primary" data-act="prac-check"${P.chosen < 0 ? ' disabled' : ''}>Check</button></div>`}
+  </div>`;
+}
+function practiceHomeView() {
+  const R = allResults(), pri = priorities(R).slice(0, 5);
+  const row = s => {
+    const r = R[s.id], st = DB.prac[s.id];
+    const meta = [`Grade ${s.g}.`, st && st.n ? `Practiced ${st.n}, ${st.c} right.` : ''].join(' ');
+    return `<li class="prow">
+      <div class="prow-info"><span class="nm">${s.name}</span><span class="muted">${meta}</span></div>
+      <div class="prow-tags">${isScored(r) ? chip(r.st, true) : ''}${st && st.mastered ? '<span class="chip mastered sm"><i aria-hidden="true"></i>Mastered</span>' : ''}</div>
+      <button class="btn small" data-act="practice" data-skill="${s.id}" data-back="practice-home">Practice</button>
+    </li>`;
+  };
+  return `${topBar('<button class="btn small" data-act="home">Back to sections</button>')}
+  <section class="hero prac-hero">
+    <h1>Practice</h1>
+    <p class="lede">Pick a skill. After each answer you’ll see if it’s right and how to work it out. Get ${MASTER} in a row on your own to master a skill. The questions never run out.</p>
+  </section>
+  ${pri.length ? `<section class="sheet plist-sheet"><h2>Start with these</h2><p class="muted">The skills the check-up says will help most, in order.</p><ul class="plist">${pri.map(x => row(x.s)).join('')}</ul></section>`
+    : '<p class="sync-note">Take the check-up first to see which skills to start with, or pick any skill below.</p>'}
+  <section class="sheet plist-sheet">
+    <h2>All skills</h2>
+    ${SECTIONS.map(sec => `<details class="psec" data-key="p-${sec.id}"><summary><span>${sec.name}</span><span class="muted">${sec.grades.includes('\u2013') ? 'Grades' : 'Grade'} ${sec.grades}</span></summary><ul class="plist">${secSkills(sec.id).map(s => row(s)).join('')}</ul></details>`).join('')}
+  </section>`;
+}
+
 // ---------- copyable summary ----------
 function plain(html) {
   const el = document.createElement('div');
@@ -2423,6 +3068,11 @@ function summaryText() {
   }
   const pats = patterns(R).filter(p => p[1].n >= 2);
   if (pats.length) { L.push('', 'Mistakes made more than once'); pats.forEach(([m, v]) => L.push(`- ${plain(MIS[m])} (${v.n} times)`)); }
+  const pr = practiced();
+  if (pr.length) {
+    L.push('', 'Practice');
+    pr.forEach(id => { const st = DB.prac[id]; L.push(`- ${SKILL[id].name}: ${st.c} of ${st.n} right, best streak ${st.best}${st.mastered ? `, mastered ${fmtDate(st.mastered)}` : ''}.`); });
+  }
   return L.join('\n');
 }
 function copySummary(btn) {
@@ -2453,8 +3103,9 @@ function render() {
   if (view.name === 'test' && (!secData(view.sec) || secData(view.sec).done)) view = { name: 'home' };
   const v = view.name;
   document.body.dataset.view = v;
-  app.innerHTML = v === 'intro' ? introView(view.sec) : v === 'test' ? testView(view.sec) : v === 'done' ? doneView(view.sec) : v === 'report' ? reportView() : homeView();
-  if (v === 'test') {
+  if (v === 'practice' && !P) { view = { name: 'practice-home' }; return render(); }
+  app.innerHTML = v === 'intro' ? introView(view.sec) : v === 'test' ? testView(view.sec) : v === 'done' ? doneView(view.sec) : v === 'report' ? reportView() : v === 'practice' ? practiceView() : v === 'practice-home' ? practiceHomeView() : homeView();
+  if (v === 'test' || (v === 'practice' && !P.checked)) {
     shownAt = Date.now(); lockUntil = shownAt + 350;
     const h = app.querySelector('.prompt'); if (h) h.focus({ preventScroll: true });
   }
@@ -2466,10 +3117,12 @@ function beginSection(id) {
   go('test', { sec: id });
 }
 function pick(i) {
-  if (view.name !== 'test' || Date.now() < lockUntil || i < 0 || i > 3) return;
+  const inPractice = view.name === 'practice' && P && !P.checked;
+  if ((view.name !== 'test' && !inPractice) || Date.now() < lockUntil || i < 0 || i > 3) return;
   selected = i;
+  if (inPractice) P.chosen = i;
   app.querySelectorAll('.opt').forEach((b, j) => { b.classList.toggle('sel', j === i); b.setAttribute('aria-pressed', String(j === i)); });
-  const nx = app.querySelector('[data-act=next]'); if (nx) nx.disabled = false;
+  const nx = app.querySelector('[data-act=next], [data-act=prac-check]'); if (nx) nx.disabled = false;
 }
 function answer(choice) {
   if (view.name !== 'test' || Date.now() < lockUntil) return;
@@ -2516,13 +3169,19 @@ document.addEventListener('click', e => {
     case 'open': openSection(sec); break;
     case 'begin': beginSection(sec); break;
     case 'pick': pick(+b.dataset.i); break;
+    case 'practice-home': go('practice-home'); break;
+    case 'practice': startPractice(b.dataset.skill, b.dataset.back); break;
+    case 'prac-check': checkPractice(false); break;
+    case 'prac-show': checkPractice(true); break;
+    case 'prac-next': if (P) { nextPractice(); render(); window.scrollTo(0, 0); } break;
+    case 'prac-back': { const back = P ? P.back : 'home'; P = null; go(back === 'report' ? 'report' : back === 'practice-home' ? 'practice-home' : 'home'); break; }
     case 'next': if (selected >= 0) answer(selected); break;
     case 'idk': answer(-1); break;
     case 'copy': copySummary(b); break;
     case 'print': window.print(); break;
-    case 'ask-new': modal('Start a new check-up?', `A summary of this one is kept, so the next report can show what changed. The individual answers are cleared, so ${IN_VIEWER ? 'copy the summary' : 'print or copy the report'} first if you want to keep it.`, 'do-new', 'Start new check-up'); break;
+    case 'ask-new': modal('Start a new check-up?', `A summary of this one is kept, so the next report can show what changed. The individual answers are cleared, so ${IN_VIEWER ? 'copy the summary' : 'print or copy the report'} first if you want to keep it. Practice records are kept.`, 'do-new', 'Start new check-up'); break;
     case 'do-new': startNew(); break;
-    case 'ask-erase': modal('Erase all saved data?', 'This deletes every answer and every past result saved in this browser. It can’t be undone.', 'do-erase', 'Erase everything', true); break;
+    case 'ask-erase': modal('Erase all saved data?', 'This deletes every answer, past result and practice record. It can’t be undone.', 'do-erase', 'Erase everything', true); break;
     case 'do-erase': eraseAll(); break;
     case 'close-modal': closeModal(); break;
   }
@@ -2532,6 +3191,15 @@ document.addEventListener('input', e => {
 });
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') { closeModal(); return; }
+  if (view.name === 'practice' && P && !document.querySelector('.modal-wrap') && !e.metaKey && !e.ctrlKey && !e.altKey) {
+    const k = e.key.toLowerCase(), i = '1234'.indexOf(k) >= 0 ? '1234'.indexOf(k) : 'abcd'.indexOf(k);
+    if (!P.checked && k.length === 1 && i >= 0) { pick(i); e.preventDefault(); }
+    else if (e.key === 'Enter' && !e.target.closest('button')) {
+      if (P.checked) { nextPractice(); render(); window.scrollTo(0, 0); } else if (P.chosen >= 0) checkPractice(false);
+      e.preventDefault();
+    }
+    return;
+  }
   if (view.name !== 'test' || document.querySelector('.modal-wrap') || e.metaKey || e.ctrlKey || e.altKey) return;
   const k = e.key.toLowerCase(), i = '1234'.indexOf(k) >= 0 ? '1234'.indexOf(k) : 'abcd'.indexOf(k);
   if (k.length === 1 && i >= 0) { pick(i); e.preventDefault(); }
